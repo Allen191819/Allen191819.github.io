@@ -1,4 +1,4 @@
-baseURL = "https://allen191819.github.io/"
+baseURL = "https://allen191819.xyz"
 # [en, zh-cn, fr, ...] determines default content language
 defaultContentLanguage = "en"
 # language code
@@ -454,8 +454,8 @@ theme = "LoveIt"
         enable = true
         owner = "Allen191819"
         repo = "Allen191819.github.io"
-        clientId = "942d0f6c9980c4ce50f6"
-        clientSecret = "269260bf1224d8b8d83ea6145142be03dca83601"
+        clientId = "210e66af705e3a80978f"
+        clientSecret = "37934f3211d31e7252b201404befe46a80c9726d"
       # Valine comment config (https://github.com/xCss/Valine)
       # Valine 评论系统设置 (https://github.com/xCss/Valine)
       [params.page.comment.valine]

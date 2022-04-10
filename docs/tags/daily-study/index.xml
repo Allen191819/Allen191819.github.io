@@ -1,50 +1,50 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Daily study - Tag - Allen</title>
-        <link>https://allen191819.github.io/tags/daily-study/</link>
+        <link>https://allen191819.xyz/tags/daily-study/</link>
         <description>Daily study - Tag - Allen</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>mzm191891@163.com (Allen191819)</managingEditor>
-            <webMaster>mzm191891@163.com (Allen191819)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 04 Dec 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://allen191819.github.io/tags/daily-study/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mzm191891@163.com (Allen191819)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 04 Dec 2021 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://allen191819.xyz/tags/daily-study/" rel="self" type="application/rss+xml" /><item>
     <title>Markdown 嵌入关系图表</title>
-    <link>https://allen191819.github.io/mermaid/</link>
+    <link>https://allen191819.xyz/mermaid/</link>
     <pubDate>Sat, 04 Dec 2021 21:57:40 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>https://allen191819.github.io/mermaid/</guid>
+    <guid>https://allen191819.xyz/mermaid/</guid>
     <description><![CDATA[<p>借助 mermaid 在 markdown 中嵌入图表</p>]]></description>
 </item><item>
     <title>隐秘的后门攻击</title>
-    <link>https://allen191819.github.io/backdoor/</link>
+    <link>https://allen191819.xyz/backdoor/</link>
     <pubDate>Sat, 04 Dec 2021 21:57:40 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>https://allen191819.github.io/backdoor/</guid>
+    <guid>https://allen191819.xyz/backdoor/</guid>
     <description><![CDATA[<p>对于 Hidden trigger backdoor attack 的复现</p>]]></description>
 </item><item>
     <title>UAP生成对抗样本(Universal adversarial perturbations)</title>
-    <link>https://allen191819.github.io/uap/</link>
+    <link>https://allen191819.xyz/uap/</link>
     <pubDate>Fri, 12 Nov 2021 21:57:40 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>https://allen191819.github.io/uap/</guid>
+    <guid>https://allen191819.xyz/uap/</guid>
     <description><![CDATA[<p>UAP 生成对抗样本实践(pytorch)</p>]]></description>
 </item><item>
     <title>Github 对抗攻击库</title>
-    <link>https://allen191819.github.io/github%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E5%AF%B9%E6%8A%97%E6%94%BB%E5%87%BB%E5%BA%93_251021170759/</link>
+    <link>https://allen191819.xyz/github%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E5%AF%B9%E6%8A%97%E6%94%BB%E5%87%BB%E5%BA%93_251021170759/</link>
     <pubDate>Wed, 10 Nov 2021 21:57:40 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>https://allen191819.github.io/github%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E5%AF%B9%E6%8A%97%E6%94%BB%E5%87%BB%E5%BA%93_251021170759/</guid>
+    <guid>https://allen191819.xyz/github%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E5%AF%B9%E6%8A%97%E6%94%BB%E5%87%BB%E5%BA%93_251021170759/</guid>
     <description><![CDATA[<p>Github 中部分经典对抗攻击库整理</p>]]></description>
 </item><item>
     <title>对抗攻击概述</title>
-    <link>https://allen191819.github.io/adversarialattacks_241021180957/</link>
+    <link>https://allen191819.xyz/adversarialattacks_241021180957/</link>
     <pubDate>Wed, 10 Nov 2021 21:57:40 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>https://allen191819.github.io/adversarialattacks_241021180957/</guid>
+    <guid>https://allen191819.xyz/adversarialattacks_241021180957/</guid>
     <description><![CDATA[<p>对抗攻击入门, 了解12种生成对抗样本的方法和15种防御方法。</p>]]></description>
 </item><item>
     <title>对抗攻击方法</title>
-    <link>https://allen191819.github.io/adversarialattackmethod/</link>
+    <link>https://allen191819.xyz/adversarialattackmethod/</link>
     <pubDate>Wed, 10 Nov 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>https://allen191819.github.io/adversarialattackmethod/</guid>
+    <guid>https://allen191819.xyz/adversarialattackmethod/</guid>
     <description><![CDATA[<p>对于FGSM, C&amp;W, UAP等经典对抗攻击方法的学习笔记。</p>]]></description>
 </item></channel>
 </rss>
