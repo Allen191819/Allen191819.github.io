@@ -99,7 +99,7 @@ theme = "LoveIt"
       [languages.en.params.search]
         enable = true
         # type of search engine ("lunr", "algolia")
-        type = "algolia"
+        type = "lunr"
         # max index length of the chunked content
         contentLength = 4000
         # placeholder of the search bar
@@ -111,11 +111,11 @@ theme = "LoveIt"
         # HTML tag name of the highlight part in results
         highlightTag = "em"
         # whether to use the absolute URL based on the baseURL in search index
-        absoluteURL = false
+        absoluteURL = true
         [languages.en.params.search.algolia]
           index = "index.en"
-          appID = "LYV9H4OLKS"
-          searchKey = "fcdfaf39f060c58d1f7ef273454165cd"
+          appID = ""
+          searchKey = ""
       # Home page config
       [languages.en.params.home]
         # amount of RSS pages
@@ -451,7 +451,7 @@ theme = "LoveIt"
       # Gitalk comment config (https://github.com/gitalk/gitalk)
       # Gitalk 评论系统设置 (https://github.com/gitalk/gitalk)
       [params.page.comment.gitalk]
-        enable = true
+        enable = false
         owner = "Allen191819"
         repo = "Allen191819.github.io"
         clientId = "210e66af705e3a80978f"
@@ -459,19 +459,19 @@ theme = "LoveIt"
       # Valine comment config (https://github.com/xCss/Valine)
       # Valine 评论系统设置 (https://github.com/xCss/Valine)
       [params.page.comment.valine]
-        enable = false
-        appId = "QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI"
-        appKey = "WBmoGyJtbqUswvfLh6L8iEBr"
+        enable = true
+        appId = "dh3RTojhq3nlJOKjVBj7IjDE-gzGzoHsz"
+        appKey = "PAT7jDcg2ByGXNmiigwBrIoH"
         placeholder = ""
-        avatar = "mp"
+        avatar = "identicon"
         meta= ""
         pageSize = 10
         lang = ""
         visitor = true
         recordIP = true
         highlight = true
-        enableQQ = false
-        serverURLs = "https://leancloud.hugoloveit.com"
+        enableQQ = true
+        serverURLs = ""
         # emoji data file name, default is "google.yml"
         # ("apple.yml", "google.yml", "facebook.yml", "twitter.yml")
         # located in "themes/LoveIt/assets/data/emoji/" directory
