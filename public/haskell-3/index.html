@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Haskell 学习笔记四 - Allen</title><meta name="Description" content="Haskell I/O"><meta property="og:title" content="Haskell 学习笔记四" />
+<meta property="og:description" content="Haskell I/O" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://Allen191819.xyz/haskell-3/" /><meta property="og:image" content="http://Allen191819.xyz/haskell-3/featured-image.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-04T21:57:40+08:00" />
+<meta property="article:modified_time" content="2022-03-04T16:45:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://Allen191819.xyz/haskell-3/featured-image.jpg"/>
+<meta name="twitter:title" content="Haskell 学习笔记四"/>
+<meta name="twitter:description" content="Haskell I/O"/>
+<meta name="application-name" content="Allen">
+<meta name="apple-mobile-web-app-title" content="Allen"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://Allen191819.xyz/haskell-3/" /><link rel="prev" href="http://Allen191819.xyz/haskell-2/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Haskell 学习笔记四",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/Allen191819.xyz\/haskell-3\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/Allen191819.xyz\/haskell-3\/featured-image.jpg",
+                            "width":  5000 ,
+                            "height":  2812 
+                        }],"genre": "posts","keywords": "Lambda, FP","wordcount":  1118 ,
+        "url": "http:\/\/Allen191819.xyz\/haskell-3\/","datePublished": "2022-03-04T21:57:40+08:00","dateModified": "2022-03-04T16:45:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Allen191819","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/Allen191819.xyz\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Allen191819"
+            },"description": "Haskell I/O"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Haskell 学习笔记四</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://allen191819.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Allen191819</a></span>&nbsp;<span class="post-category">included in <a href="/categories/haskell/"><i class="far fa-folder fa-fw"></i>Haskell</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-04">2022-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1118 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/haskell-3/featured-image.jpg"
+        data-srcset="/haskell-3/featured-image.jpg, /haskell-3/featured-image.jpg 1.5x, /haskell-3/featured-image.jpg 2x"
+        data-sizes="auto"
+        alt="/haskell-3/featured-image.jpg"
+        title="Haskell I/O" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#functional-programming">Functional Programming</a></li>
+    <li><a href="#目录">目录</a></li>
+    <li><a href="#输入与输出">输入与输出</a>
+      <ul>
+        <li><a href="#运行一个-haskell-程序">运行一个 Haskell 程序</a></li>
+        <li><a href="#hello-world">Hello world</a></li>
+        <li><a href="#do-block">do block</a></li>
+        <li><a href="#输入文本">输入文本</a></li>
+        <li><a href="#其他-io-相关函数用法">其他 IO 相关函数用法</a></li>
+      </ul>
+    </li>
+    <li><a href="#文件与流">文件与流</a>
+      <ul>
+        <li><a href="#openfile">openFile</a></li>
+        <li><a href="#withfile">withFile</a></li>
+        <li><a href="#readfile">readFile</a></li>
+        <li><a href="#writefile">writeFile</a></li>
+        <li><a href="#appendfile">appendFile</a></li>
+        <li><a href="#buffer">buffer</a></li>
+        <li><a href="#opentempfile">openTempFile</a></li>
+      </ul>
+    </li>
+    <li><a href="#路径操作">路径操作</a>
+      <ul>
+        <li><a href="#getcurrentdirectory">getCurrentDirectory</a></li>
+        <li><a href="#removefile">removeFile</a></li>
+        <li><a href="#renamefile">renameFile</a></li>
+        <li><a href="#doesfileexist">doesFileExist</a></li>
+      </ul>
+    </li>
+    <li><a href="#command-line-arguments">Command line arguments</a>
+      <ul>
+        <li><a href="#getargs">getArgs</a></li>
+        <li><a href="#getprogname">getProgName</a></li>
+      </ul>
+    </li>
+    <li><a href="#exceptions">Exceptions</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>输入与输出</p>
+<h1 id="haskell-learning">Haskell Learning</h1>
+<h2 id="functional-programming">Functional Programming</h2>
+<ul>
+<li>Pure functions</li>
+<li>Immutable Data</li>
+<li>No/Less side-effects</li>
+<li>Declatative</li>
+<li>Easier to verity</li>
+</ul>
+<h2 id="目录">目录</h2>
+<!-- vim-markdown-toc GFM -->
+<ul>
+<li><a href="#%e8%be%93%e5%85%a5%e4%b8%8e%e8%be%93%e5%87%ba" rel="">输入与输出</a>
+<ul>
+<li><a href="#%e8%bf%90%e8%a1%8c%e4%b8%80%e4%b8%aa-haskell-%e7%a8%8b%e5%ba%8f" rel="">运行一个 Haskell 程序</a></li>
+<li><a href="#hello-world" rel="">Hello world</a></li>
+<li><a href="#do-block" rel="">do block</a></li>
+<li><a href="#%e8%be%93%e5%85%a5%e6%96%87%e6%9c%ac" rel="">输入文本</a></li>
+<li><a href="#%e5%85%b6%e4%bb%96-io-%e7%9b%b8%e5%85%b3%e5%87%bd%e6%95%b0%e7%94%a8%e6%b3%95" rel="">其他 IO 相关函数用法</a></li>
+</ul>
+</li>
+<li><a href="#%e6%96%87%e4%bb%b6%e4%b8%8e%e6%b5%81" rel="">文件与流</a>
+<ul>
+<li><a href="#openfile" rel="">openFile</a></li>
+<li><a href="#withfile" rel="">withFile</a></li>
+<li><a href="#readfile" rel="">readFile</a></li>
+<li><a href="#writefile" rel="">writeFile</a></li>
+<li><a href="#appendfile" rel="">appendFile</a></li>
+<li><a href="#buffer" rel="">buffer</a></li>
+<li><a href="#opentempfile" rel="">openTempFile</a></li>
+</ul>
+</li>
+<li><a href="#%e8%b7%af%e5%be%84%e6%93%8d%e4%bd%9c" rel="">路径操作</a>
+<ul>
+<li><a href="#getcurrentdirectory" rel="">getCurrentDirectory</a></li>
+<li><a href="#removefile" rel="">removeFile</a></li>
+<li><a href="#renamefile" rel="">renameFile</a></li>
+<li><a href="#doesfileexist" rel="">doesFileExist</a></li>
+</ul>
+</li>
+<li><a href="#command-line-arguments" rel="">Command line arguments</a>
+<ul>
+<li><a href="#getargs" rel="">getArgs</a></li>
+<li><a href="#getprogname" rel="">getProgName</a></li>
+</ul>
+</li>
+<li><a href="#exceptions" rel="">Exceptions</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+<h2 id="输入与输出">输入与输出</h2>
+<p>在 Haskell 中，一个函数不能改变状态，像是改变一个变量的内容。（当一个函数会改变状态，我们说这函数是有副作用的。） 函数无法改变状态的好处是它让我们促进了我们理解程序的容易度，但同时也造成了一个问题。假如说一个函数无法改变现实世界的状态，那它要如何打印出它所计算的结果？毕竟要告诉我们结果的话，它必须要改变输出设备的状态（譬如说屏幕），然后从屏幕传达到我们的脑，并改变我们心智的状态。</p>
+<p>不要太早下结论，Haskell 实际上设计了一个非常聪明的系统来处理有副作用的函数，它漂亮地将我们的程序区分成纯粹跟非纯粹两部分。非纯粹的部分负责跟键盘还有屏幕沟通。有了这区分的机制，在跟外界沟通的同时，我们还是能够有效运用纯粹所带来的好处，像是惰性求值、容错性跟模块性。</p>
+<h3 id="运行一个-haskell-程序">运行一个 Haskell 程序</h3>
+<ul>
+<li>编译运行：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ghc --make helloworld
+</span></span><span class="line"><span class="cl">$ ./helloworld
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使用 <code>runhaskell</code> 命令运行</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ runhaskell code.hs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="hello-world">Hello world</h3>
+<p>在一个 Haskell 程序中输出文字需要定义一个 main 函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="n">putStrLn</span> <span class="s">&#34;Hello World&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 putStrLn 的类型是：</p>
+<p>$$putStrLn :: String \to IO ()$$</p>
+<p><code>putStrLn</code> 接收一个 <code>String</code> 类型，并返回一个结果为()类型的 IO 动作（I/O action）。所以 main 函数的类型为 IO ()。（IO 的 Kind 是 _ -&gt; _）</p>
+<p>除此之外，还有其他默认提供的输出文本的函数：</p>
+<ul>
+<li><code>putStr</code>：输出文本，结尾不换行</li>
+<li><code>putChar</code>：输出单个字符，结尾不换行。接收的参数为单个 Char，不是 String（用单引号不是双引号）</li>
+<li><code>print</code>：可以接收任何 Show 的成员，先用 show 转化为字符串然后输出。等同于 putStrLn . show</li>
+</ul>
+<h3 id="do-block">do block</h3>
+<p>在 main 函数中使用多个 <code>putStrLn</code> 需要使用 <code>do</code> 语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">putStrLn</span> <span class="s">&#34;晚宝晚宝 陪你到老&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">putStrLn</span> <span class="s">&#34;傲娇双钻 我的老伴&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中最后一行一定要返回 <code>IO ()</code> 类型的值</p>
+<h3 id="输入文本">输入文本</h3>
+<p>输入文字需要在 <code>do</code> 块中使用 <code>getLine</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl"><span class="nf">line</span> <span class="ow">&lt;-</span> <span class="n">getLine</span>
+</span></span><span class="line"><span class="cl"><span class="nf">putStrLn</span> <span class="n">line</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>getLine</code> 的类型是：</p>
+<p>$$getLine :: IO String$$</p>
+<p>而 <code>&lt;-</code> 操作符将 <code>getLine</code> 中的 String 提取了出来给到了 line，使 line 变成了 String 类型的一个字符串。</p>
+<p>而且使用输入的字符串必须要经过一次 <code>&lt;-</code>，不能直接使用 getLine 作为字符串，因为 getLine 不是 String 类型，而是 IO String 类型。</p>
+<h3 id="其他-io-相关函数用法">其他 IO 相关函数用法</h3>
+<p><strong>return</strong></p>
+<p>Haskell 中的 <code>return</code> 和其他命令式语言中的 <code>return</code> 完全不同，它不会使函数直接结束并返回一个值。</p>
+<p>main 函数必须定义为类型为 IO ()的函数，所以在 main 函数中使用 if 语句，如果不输出的话也不可以直接放下什么都不干，因为这时候 main 函数的类型不是 IO ()。所以这时需要使用 <code>return ()</code> 来为 main 函数指定为 IO ()类型，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl"><span class="nf">line</span> <span class="ow">&lt;-</span> <span class="n">getLine</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">null</span> <span class="n">line</span>
+</span></span><span class="line"><span class="cl"><span class="kr">then</span> <span class="n">return</span> <span class="nb">()</span> <span class="c1">-- &lt;-这里</span>
+</span></span><span class="line"><span class="cl"><span class="kr">else</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 <code>&lt;-</code> 操作符也可以直接将 <code>return</code> 语句中的内容提取出来，比如 <code>a &lt;- return ‘A’</code>，执行后 a 就是’A’。</p>
+<p><strong>when</strong></p>
+<p><code>when</code> 包含在 <code>Control.Monad</code> 模块中，它表示在满足第一个参数的条件下会执行第二个函数，否则会 <code>return ()</code>。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">Control.Monad</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="ow">&lt;-</span> <span class="n">getChar</span>
+</span></span><span class="line"><span class="cl">    <span class="n">when</span> <span class="p">(</span><span class="n">c</span> <span class="o">/=</span> <span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="o">$</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">        <span class="n">putChar</span> <span class="n">c</span>
+</span></span><span class="line"><span class="cl">        <span class="n">main</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>等同于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="ow">&lt;-</span> <span class="n">getChar</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">c</span> <span class="o">/=</span> <span class="sc">&#39; &#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">then</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">        <span class="n">putChar</span> <span class="n">c</span>
+</span></span><span class="line"><span class="cl">        <span class="n">main</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">else</span> <span class="n">return</span> <span class="nb">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>sequence</strong></p>
+<p><code>sequence</code> 在 IO 中使用时可以达成 <code>[IO a] -&gt; IO [a]</code> 的效果，所以可以用作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="ow">&lt;-</span> <span class="n">sequence</span> <span class="p">[</span><span class="n">getLine</span><span class="p">,</span> <span class="n">getLine</span><span class="p">,</span> <span class="n">getLine</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>mapM &amp; mapM_</strong></p>
+<p>在 IO 相关的地方使用 <code>map</code>，可以使用 <code>mapM</code> 和 <code>mapM_</code>，其中 <code>mapM</code> 有返回值而 <code>mapM_</code> 直接扔掉了返回值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">mapM</span> <span class="n">print</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nb">()</span><span class="p">,</span><span class="nb">()</span><span class="p">,</span><span class="nb">()</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">mapM_</span> <span class="n">print</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>forever</strong></p>
+<p><code>forever</code> 函数包含在 <code>Control.Monad</code> 模块中。在 main 函数开头加上 <code>forever</code> 函数可以使后面的 do 块一直重复执行直到程序被迫终止，如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">Control.Monad</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="n">forever</span> <span class="o">$</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>forM</strong></p>
+<p><code>forM</code> 函数包含在 <code>Control.Monad</code> 模块中，它的功能和 <code>mapM</code> 类似，从第一个参数中逐个取出元素传入第二个参数（一个接收一个参数的函数）中，并且第二个参数可以返回 IO a 类型。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">Control.Monad</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl"><span class="nf">colors</span> <span class="ow">&lt;-</span> <span class="n">forM</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="p">(</span><span class="nf">\</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl"><span class="nf">putStrLn</span> <span class="o">$</span> <span class="s">&#34;Which color do you associate with the number &#34;</span> <span class="o">++</span> <span class="n">show</span> <span class="n">a</span> <span class="o">++</span> <span class="s">&#34;?&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">color</span> <span class="ow">&lt;-</span> <span class="n">getLine</span>
+</span></span><span class="line"><span class="cl"> <span class="n">return</span> <span class="n">color</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">putStrLn</span> <span class="s">&#34;The colors that you associate with 1, 2, 3 and 4 are: &#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">mapM</span> <span class="n">putStrLn</span> <span class="n">colors</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>getContents</strong></p>
+<p><code>getLine</code> 获取一整行，而 <code>getContents</code> 从标准输入中获取全部内容直到遇到 EOF，并且它是 lazy 的，在执行了 <code>foo &lt;- getContents</code> 后，它并不会读取标准输入并且赋值到 foo，而是等到需要使用 foo 的时候再从标准输入读取。</p>
+<p><code>getContents</code> 在使用管道传入文字时很常用，可以代替 <code>forever</code> + <code>getLine</code> 使用，比如一个 Haskell 程序文件 code.hs：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">Data.Char</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">contents</span> <span class="ow">&lt;-</span> <span class="n">getContents</span>
+</span></span><span class="line"><span class="cl">    <span class="n">putStr</span> <span class="p">(</span><span class="n">map</span> <span class="n">toUpper</span> <span class="n">contents</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用管道传入文本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat text.txt <span class="p">|</span> ./code
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>interact</strong></p>
+<p>String -&gt; String 类型的函数在输入输出中的使用太常见了，所以可以使用 interact 函数来简化。interact 的类型是：</p>
+<p>$$interact :: (String \to String) \to IO ()$$</p>
+<p>可以看出它接收一个 <code>String -&gt; String</code> 的函数，并返回一个 IO ()类型，所以可以直接用在 main 上。</p>
+<p>转换大写的程序就可以这样实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="n">interact</span> <span class="o">$</span> <span class="n">unlines</span> <span class="o">.</span> <span class="n">map</span> <span class="p">(</span><span class="n">map</span> <span class="n">toUpper</span><span class="p">)</span> <span class="o">.</span> <span class="n">lines</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="文件与流">文件与流</h2>
+<p>文件与流的相关函数都包含在 <code>System.IO</code> 模块中：</p>
+<h3 id="openfile">openFile</h3>
+<p>$$openFile :: FilePath \to IOMode \to IO\ Handle$$</p>
+<p>其中 <code>FilePath</code> 是 <code>String</code> 的 <code>type synonyms</code>，用一个字符串来表示需要打开的文件的路径</p>
+<p><code>IOMode</code> 的定义是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">IOMode</span> <span class="ow">=</span> <span class="kt">ReadMode</span> <span class="o">|</span> <span class="kt">WriteMode</span> <span class="o">|</span> <span class="kt">AppendMode</span> <span class="o">|</span> <span class="kt">ReadWriteMode</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>openFile</code> 返回一个 IO Handle 类型的值，将其用&lt;-操作符提取后会出现一个 Handle 的值。但不能从 Handle 中直接使用文字，还需要使用一系列函数：</p>
+<p><code>hGetContents</code> :: Handle -&gt; IO String ，从 Handle 中读取全部内容，返回一个 IO String
+<code>hGetChar</code> :: Handle -&gt; IO Char ，从 Handle 中读取一个字符
+<code>hGetLine</code> :: Handle -&gt; IO String ，从 Handle 中读取一行，返回一个 IO String
+<code>hPutStr</code> :: Handle -&gt; String -&gt; IO () ，向 Handle 中输出字符串
+<code>hPutStrLn</code> :: Handle -&gt; String -&gt; IO () ，同上</p>
+<p>在使用 <code>openFile</code> 进行文件操作后，需要使用 <code>hClose</code> 手动关闭 Handle。</p>
+<p>$$hClose :: Handle \to IO ()$$</p>
+<p>接收一个 Handle 并返回 IO ()，可以直接放在 main 函数末尾</p>
+<p>所以使用 openFile 读取一个文件中的全部内容并输出的全部代码是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">System.IO</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">handle</span> <span class="ow">&lt;-</span> <span class="n">openFile</span> <span class="s">&#34;test.txt&#34;</span> <span class="kt">ReadMode</span>
+</span></span><span class="line"><span class="cl">    <span class="n">contents</span> <span class="ow">&lt;-</span> <span class="n">hGetContents</span> <span class="n">handle</span>
+</span></span><span class="line"><span class="cl">    <span class="n">putStrLn</span> <span class="n">contents</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hClose</span> <span class="n">handle</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="withfile">withFile</h3>
+<p><code>withFile</code> 类似 Python 中的 <code>with open</code>，它在读取文件使用之后不需要手动 <code>close</code> 文件。它的类型是：</p>
+<p>$$withFile :: FilePath \to IOMode \to (Handle \to IO a) \to IO a$$</p>
+<p>可以看出，它接收三个参数：</p>
+<ul>
+<li>
+<p><code>FilePath</code>：一个表示文件路径的 String</p>
+</li>
+<li>
+<p><code>IOMode</code>：打开文件的模式</p>
+</li>
+<li>
+<p><code>(Handle -&gt; IO a)</code>：一个函数，表示对读取文件后的 Handle 索要进行的操作，需要返回一个 I/O action；而这个返回值也将作为 withFile 的返回值</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">System.IO</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="n">withFile</span> <span class="s">&#34;text.txt&#34;</span> <span class="kt">ReadMode</span> <span class="p">(</span><span class="nf">\</span><span class="n">handle</span> <span class="ow">-&gt;</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">contents</span> <span class="ow">&lt;-</span> <span class="n">hGetContents</span> <span class="n">handle</span>
+</span></span><span class="line"><span class="cl">    <span class="n">putStrLn</span> <span class="n">contents</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="readfile">readFile</h3>
+<p><code>readFile</code> 可以更加简化读取文件内容的操作，它的类型：</p>
+<p>$$readFile :: FilePath \to IO String$$</p>
+<p>它只需要输入一个表示文件路径的字符串，返回其中以其中内容为内容的 <code>I/O action</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">System.IO</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">contents</span> <span class="ow">&lt;-</span> <span class="n">readFile</span> <span class="s">&#34;text.txt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">putStrLn</span> <span class="n">contents</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="writefile">writeFile</h3>
+<p>writeFile 简化了写入文件的操作，它的类型：</p>
+<p>$$writeFile :: FilePath \to String \to IO ()$$</p>
+<p>传入的第一个参数是要写入的文件的路径，第二个参数是要写入的字符串，返回一个 IO ()</p>
+<h3 id="appendfile">appendFile</h3>
+<p><code>appendFile</code> 类似 <code>writeFile</code>，但使用它不会覆盖文件中原来内容，而是直接把字符串添加到文件末尾</p>
+<h3 id="buffer">buffer</h3>
+<p>文件以流的形式被读取，默认文字文件的缓冲区 <code>buffer</code> 大小是一行，即每次读取一行内容；默认二进制文件的缓冲区大小是以块为单位，如果没有指定则根据系统默认来选择。</p>
+<p>也可以通过 <code>hSetBuffering</code> 函数来手动设置缓冲区大小，这个函数的类型：</p>
+<p>$$hSetBuffering :: Handle \to BufferMode \to IO ()$$</p>
+<p>它接收一个 <code>handle</code>，和一个 <code>BufferMode</code>，并返回 IO ()。其中 <code>BufferMode</code> 有以下几种：</p>
+<ul>
+<li><code>NoBuffering</code>：没有缓冲区，一次读入一个字符</li>
+<li><code>LineBuffering</code>：缓冲区大小是一行，即每次读入一行内容</li>
+<li><code>BlockBuffering (Maybe Int)</code>：缓冲区大小是一块，块的大小由 Maybe Int 指定：
+<ul>
+<li><code>BlockBuffering (Nothing)</code>：使用系统默认的块大小</li>
+<li><code>BlockBuffering (Just 2048)</code>：一块的大小是 2048 字节，即每次读入 2048bytes 的内容</li>
+</ul>
+</li>
+</ul>
+<p>缓冲区的刷新是自动的，也可以通过 <code>hFlush</code> 来手动刷新</p>
+<p>$$hFlush :: Handle \to IO ()$$</p>
+<p>传入一个 handle，返回 IO ()，即刷新对应 handle 的缓冲区</p>
+<h3 id="opentempfile">openTempFile</h3>
+<p><code>openTempFile</code> 可以新建一个临时文件：</p>
+<p>$$openTempFile :: FilePath \to String \to IO (FilePath, Handle)$$</p>
+<p><code>FilePath</code> 指临时文件要创建的位置路径，<code>String</code> 指临时文件名字的前缀，返回一个 <code>I/O action</code>，其内容第一个 FilePath 是创建得到的临时文件的路径，Handle 是临时文件的 handle</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">System.IO</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">tempFile</span><span class="p">,</span> <span class="n">tempHandle</span><span class="p">)</span> <span class="ow">&lt;-</span> <span class="n">openTempFile</span> <span class="s">&#34;.&#34;</span> <span class="s">&#34;temp&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hClose</span> <span class="n">tempHandle</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="路径操作">路径操作</h2>
+<p>相关函数都包含在 <code>System.Directory</code> 模块中.</p>
+<h3 id="getcurrentdirectory">getCurrentDirectory</h3>
+<p>$$getCurrentDirectory :: IO FilePath$$</p>
+<p>直接返回一个 I/O action，其内容是一个字符串表示当前路径的绝对路径</p>
+<h3 id="removefile">removeFile</h3>
+<p>$$removeFile :: FilePath \to IO ()$$</p>
+<p>输入一个文件路径，并删除掉它</p>
+<h3 id="renamefile">renameFile</h3>
+<p>$$renameFile :: FilePath \to FilePath \to IO ()$$</p>
+<p>输入一个原路径，一个新路径，为原路径的文件重命名为新路径的名</p>
+<h3 id="doesfileexist">doesFileExist</h3>
+<p>$$doesFileExist :: FilePath \to IO Bool$$</p>
+<p>检查文件是否存在，返回一个包含布尔值的 I/O action</p>
+<h2 id="command-line-arguments">Command line arguments</h2>
+<p><code>System.Environment</code> 模块中提供了两个函数可以用来处理传入命令行的参数</p>
+<h3 id="getargs">getArgs</h3>
+<p>$$getArgs :: IO [String]$$</p>
+<p>不需要输入参数，直接返回一个 <code>I/O action</code>，内容为传入命令行的参数（一个由 String 组成的列表）。相当于 C 语言中的 argv[1:]</p>
+<h3 id="getprogname">getProgName</h3>
+<p>$$getProgName :: IO String$$</p>
+<p>返回 I/O action，内容为程序的名字，相当于 C 语言中的 argv[0]</p>
+<h2 id="exceptions">Exceptions</h2>
+<p>程序在运行失败时会抛出异常，可以通过 <code>Control.Exception</code> 模块中的 catch 函数来捕获异常：</p>
+<p>$$catch :: Exception e \Rightarrow IO a \to (e \to IO a) \to IO a$$</p>
+<p>第一个参数是要进行的操作，以 IO a 为返回值的类型，第二个参数是一个函数，它接收异常并进行操作，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">Control.Exception</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="n">main&#39;</span> <span class="p">`</span><span class="n">catch</span><span class="p">`</span> <span class="n">handler</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main&#39;</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">main&#39;</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">handler</span> <span class="ow">::</span> <span class="kt">Exception</span> <span class="n">e</span> <span class="ow">=&gt;</span> <span class="n">e</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">handler</span> <span class="n">e</span> <span class="ow">=</span>  <span class="n">putStrLn</span> <span class="s">&#34;...&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以利用 <code>guard</code> 语法和 <code>System.IO.Error</code> 中的函数来判断 IO 异常的类型来进行不同操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">System.Environment</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">System.IO.Error</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nn">Control.Exception</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="n">toTry</span> <span class="p">`</span><span class="n">catch</span><span class="p">`</span> <span class="n">handler</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">toTry</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">toTry</span> <span class="ow">=</span> <span class="kr">do</span> <span class="p">(</span><span class="n">fileName</span><span class="kt">:</span><span class="kr">_</span><span class="p">)</span> <span class="ow">&lt;-</span> <span class="n">getArgs</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">           <span class="n">contents</span> <span class="ow">&lt;-</span> <span class="n">readFile</span> <span class="n">fileName</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">           <span class="n">putStrLn</span> <span class="o">$</span> <span class="s">&#34;The file has &#34;</span> <span class="o">++</span> <span class="n">show</span> <span class="p">(</span><span class="n">length</span> <span class="p">(</span><span class="n">lines</span> <span class="n">contents</span><span class="p">))</span> <span class="o">++</span> <span class="s">&#34; lines!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">handler</span> <span class="ow">::</span> <span class="kt">IOError</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">handler</span> <span class="n">e</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">isDoesNotExistError</span> <span class="n">e</span> <span class="ow">=</span> <span class="n">putStrLn</span> <span class="s">&#34;The file doesn&#39;t exist!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">otherwise</span> <span class="ow">=</span> <span class="n">ioError</span> <span class="n">e</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-03-04</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/haskell-3/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://Allen191819.xyz/haskell-3/" data-title="Haskell 学习笔记四" data-hashtags="Lambda,FP"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://Allen191819.xyz/haskell-3/" data-hashtag="Lambda"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://Allen191819.xyz/haskell-3/" data-title="Haskell 学习笔记四"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="http://Allen191819.xyz/haskell-3/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://Allen191819.xyz/haskell-3/" data-title="Haskell 学习笔记四"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="http://Allen191819.xyz/haskell-3/" data-title="Haskell 学习笔记四"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/lambda/">Lambda</a>,&nbsp;<a href="/tags/fp/">FP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/haskell-2/" class="prev" rel="prev" title="Haskell 学习笔记三"><i class="fas fa-angle-left fa-fw"></i>Haskell 学习笔记三</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://allen191819.xyz/" target="_blank">Allen191819</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">陕ICP备2022000578号-1</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"gitalk":{"admin":["Allen191819"],"clientID":"942d0f6c9980c4ce50f6","clientSecret":"269260bf1224d8b8d83ea6145142be03dca83601","id":"2022-03-04T21:57:40+08:00","owner":"Allen191819","repo":"Allen191819.github.io","title":"Haskell 学习笔记四"}},"data":{"id-1":"Allen's Blog","id-2":"Allen's Blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"LYV9H4OLKS","algoliaIndex":"index.en","algoliaSearchKey":"fcdfaf39f060c58d1f7ef273454165cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

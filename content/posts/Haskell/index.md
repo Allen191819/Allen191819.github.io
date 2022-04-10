@@ -5,7 +5,7 @@ date: 2022-03-02T21:57:40+08:00
 lastmod: 2020-03-02T16:45:40+08:00
 draft: false
 author: "Allen191819"
-authorLink: "https://dillonzq.com"
+authorLink: "https://allen191819.xyz"
 description: "Haskell 基础语法"
 
 tags: ["Lambda", "FP"]
@@ -15,6 +15,9 @@ lightgallery: true
 
 math:
     enable: true
+resources:
+- name: featured-image
+  src: featured-image.png
 ---
 
 

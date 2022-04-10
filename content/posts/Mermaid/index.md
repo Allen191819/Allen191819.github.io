@@ -5,7 +5,7 @@ date: 2021-12-04T21:57:40+08:00
 lastmod: 2021-12-06T16:45:40+08:00
 draft: false
 author: "Allen191819"
-authorLink: "https://dillonzq.com"
+authorLink: "https://allen191819.xyz"
 description: "对 mermaid 的介绍"
 
 tags: ["Daily study", "Markdown"]
@@ -15,6 +15,9 @@ lightgallery: true
 
 math:
     enable: true
+resources:
+- name: featured-image
+  src: featured-image.jpg
 ---
 
 借助 mermaid 在 markdown 中嵌入图表

@@ -5,7 +5,7 @@ date: 2021-11-12T21:57:40+08:00
 lastmod: 2021-11-12T16:45:40+08:00
 draft: false
 author: "Allen191819"
-authorLink: "https://dillonzq.com"
+authorLink: "https://allen191819.xyz"
 description: "对于 Hidden trigger backdoor attack 的复现"
 
 tags: ["Daily study", "AI security"]
@@ -14,6 +14,9 @@ lightgallery: true
 
 math:
     enable: true
+resources:
+- name: featured-image
+  src: featured-image.jpg
 ---
 
 UAP 生成对抗样本实践(pytorch)
@@ -298,7 +301,7 @@ hl_graph
       training_mode + ", as specified by the export mode.")
 
 
-![svg](https://raw.githubusercontent.com/Allen191819/Allen191819.github.io/1d94dd1947faf0811d4be33e1ad3d6a27c900a5d/img/output_10_2.svg)
+![svg](output_10_2.svg)
 
 ### 训练模型
 ```python

@@ -5,7 +5,7 @@ date: 2021-12-12T21:57:40+08:00
 lastmod: 2021-12-13T16:45:40+08:00
 draft: false
 author: "Allen191819"
-authorLink: "https://dillonzq.com"
+authorLink: "https://allen191819.xyz"
 description: "Celeba 数据集介绍"
 
 tags: ["AI"]
@@ -15,6 +15,9 @@ lightgallery: true
 
 math:
     enable: true
+resources:
+- name: featured-image
+  src: featured-image.jpg
 ---
 
 对于 Celeba 数据集的介绍

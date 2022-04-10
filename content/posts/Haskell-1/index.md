@@ -5,7 +5,7 @@ date: 2022-03-03T21:57:40+08:00
 lastmod: 2022-03-03T16:45:40+08:00
 draft: false
 author: "Allen191819"
-authorLink: "https://dillonzq.com"
+authorLink: "https://allen191819.xyz"
 description: "Haskell 高阶函数与模块"
 
 tags: ["Lambda", "FP"]
@@ -19,6 +19,7 @@ resources:
 - name: featured-image
   src: featured-image.jpg
 ---
+
 
 高阶函数与模块
 

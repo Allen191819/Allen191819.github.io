@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Celeba 数据集 - Allen</title><meta name="Description" content="Celeba 数据集介绍"><meta property="og:title" content="Celeba 数据集" />
+<meta property="og:description" content="Celeba 数据集介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://Allen191819.xyz/celeba/" /><meta property="og:image" content="http://Allen191819.xyz/celeba/featured-image.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-12T21:57:40+08:00" />
+<meta property="article:modified_time" content="2021-12-13T16:45:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://Allen191819.xyz/celeba/featured-image.jpg"/>
+<meta name="twitter:title" content="Celeba 数据集"/>
+<meta name="twitter:description" content="Celeba 数据集介绍"/>
+<meta name="application-name" content="Allen">
+<meta name="apple-mobile-web-app-title" content="Allen"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://Allen191819.xyz/celeba/" /><link rel="prev" href="http://Allen191819.xyz/mermaid/" /><link rel="next" href="http://Allen191819.xyz/latexsymbols/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Celeba 数据集",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/Allen191819.xyz\/celeba\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/Allen191819.xyz\/celeba\/featured-image.jpg",
+                            "width":  1920 ,
+                            "height":  1080 
+                        }],"genre": "posts","keywords": "AI","wordcount":  642 ,
+        "url": "http:\/\/Allen191819.xyz\/celeba\/","datePublished": "2021-12-12T21:57:40+08:00","dateModified": "2021-12-13T16:45:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Allen191819","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/Allen191819.xyz\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Allen191819"
+            },"description": "Celeba 数据集介绍"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Celeba 数据集</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://allen191819.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Allen191819</a></span>&nbsp;<span class="post-category">included in <a href="/categories/dataset/"><i class="far fa-folder fa-fw"></i>Dataset</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-12">2021-12-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;642 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/celeba/featured-image.jpg"
+        data-srcset="/celeba/featured-image.jpg, /celeba/featured-image.jpg 1.5x, /celeba/featured-image.jpg 2x"
+        data-sizes="auto"
+        alt="/celeba/featured-image.jpg"
+        title="Celeba 数据集介绍" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#几种下载的资源">几种下载的资源</a></li>
+    <li><a href="#几种分类标签">几种分类标签</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>对于 Celeba 数据集的介绍</p>
+<h1 id="celeba-数据集">Celeba 数据集</h1>
+<figure><img src="celeba.png"/>
+</figure>
+
+<p>CelebA是CelebFaces Attribute的缩写，意即名人人脸属性数据集，其包含10,177个名人身份的202,599张人脸图片，每张图片都做好了特征标记，包含人脸bbox标注框、5个人脸特征点坐标以及40个属性标记，CelebA由香港中文大学开放提供，广泛用于人脸相关的计算机视觉训练任务，可用于人脸属性标识训练、人脸检测训练以及landmark(特征点)标记等，官方网址：<a href="http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html" target="_blank" rel="noopener noreffer">Large-scale CelebFaces Attributes (CelebA) Dataset</a></p>
+<figure><img src="overview.png"/>
+</figure>
+
+<h2 id="几种下载的资源">几种下载的资源</h2>
+<ul>
+<li>In-The-Wild Images (Img/img_celeba.7z)</li>
+</ul>
+<p>202,599张原始“野生”人脸图像，从网络爬取未有做任何裁剪缩放操作的人脸图像；</p>
+<ul>
+<li>Align&amp;Cropped Images (Img/img_align_celeba.zip &amp; Img/img_align_celeba_png.7z)</li>
+</ul>
+<p>202,599张经过人脸对齐和裁剪了的图像，视情况下载对应不同质量的图像即可，一般选择jpg格式才1G多的img_align_celeba.zip文件；</p>
+<h2 id="几种分类标签">几种分类标签</h2>
+<ul>
+<li>Bounding Box Annotations (Anno/list_bbox_celeba.txt)</li>
+</ul>
+<p>bounding box标签，即人脸标注框坐标注释文件，包含每一张图片对应的bbox起点坐标及其宽高，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">202599
+</span></span><span class="line"><span class="cl">image_id x_1 y_1 width height
+</span></span><span class="line"><span class="cl">000001.jpg    95  71 226 313
+</span></span><span class="line"><span class="cl">000002.jpg    72  94 221 306
+</span></span><span class="line"><span class="cl">000003.jpg   216  59  91 126
+</span></span><span class="line"><span class="cl">000004.jpg   622 257 564 781
+</span></span><span class="line"><span class="cl">000005.jpg   236 109 120 166
+</span></span><span class="line"><span class="cl">000006.jpg   146  67 182 252
+</span></span><span class="line"><span class="cl">000007.jpg    64  93 211 292
+</span></span><span class="line"><span class="cl">000008.jpg   212  89 218 302
+</span></span><span class="line"><span class="cl">000009.jpg   600 274 343 475
+</span></span><span class="line"><span class="cl">000010.jpg   113 110 211 292
+</span></span><span class="line"><span class="cl">000011.jpg   166  68 125 173
+</span></span><span class="line"><span class="cl">000012.jpg   102  31 104 144
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Landmarks Annotations (Anno/list_landmarks_celeba.txt &amp; Anno/list_landmarks_align_celeba.txt)</li>
+</ul>
+<p>5个特征点landmark坐标注释文件，list_landmarks_align_celeba.txt则是对应人脸对齐后 的landmark坐标</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">202599
+</span></span><span class="line"><span class="cl">lefteye_x lefteye_y righteye_x righteye_y nose_x nose_y leftmouth_x leftmouth_y rightmouth_x rightmouth_y
+</span></span><span class="line"><span class="cl">000001.jpg 69  109  106  113   77  142   73  152  108  154
+</span></span><span class="line"><span class="cl">000002.jpg 69  110  107  112   81  135   70  151  108  153
+</span></span><span class="line"><span class="cl">000003.jpg 76  112  104  106  108  128   74  156   98  158
+</span></span><span class="line"><span class="cl">000004.jpg 72  113  108  108  101  138   71  155  101  151
+</span></span><span class="line"><span class="cl">000005.jpg 66  114  112  112   86  119   71  147  104  150
+</span></span><span class="line"><span class="cl">000006.jpg 71  111  106  110   94  131   74  154  102  153
+</span></span><span class="line"><span class="cl">000007.jpg 70  112  108  111   85  135   72  152  104  152
+</span></span><span class="line"><span class="cl">000008.jpg 71  110  106  111   84  137   73  155  104  153
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Attributes Annotations (Anno/list_attr_celeba.txt)</li>
+</ul>
+<p>40个属性标签文件，第一行为图像张数，第二行为属性名，有该属性则标记为1，否则标记为-1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">202599
+</span></span><span class="line"><span class="cl">5_o_Clock_Shadow Arched_Eyebrows Attractive Bags_Under_Eyes Bald Bangs Big_Lips Big_Nose Black_Hair Blond_Hair Blurry Brown_Hair Bushy_Eyebrows Chubby Double_Chin Eyeglasses Goatee Gray_Hair Heavy_Makeup High_Cheekbones Male Mouth_Slightly_Open Mustache Narrow_Eyes No_Beard Oval_Face Pale_Skin Pointy_Nose Receding_Hairline Rosy_Cheeks Sideburns Smiling Straight_Hair Wavy_Hair Wearing_Earrings Wearing_Hat Wearing_Lipstick Wearing_Necklace Wearing_Necktie Young 
+</span></span><span class="line"><span class="cl">000001.jpg -1  1  1 -1 -1 -1 -1 -1 -1 -1 -1  1 -1 -1 -1 -1 -1 -1  1  1 -1  1 -1 -1  1 -1 -1  1 -1 -1 -1  1  1 -1  1 -1  1 -1 -1  1
+</span></span><span class="line"><span class="cl">000002.jpg -1 -1 -1  1 -1 -1 -1  1 -1 -1 -1  1 -1 -1 -1 -1 -1 -1 -1  1 -1  1 -1 -1  1 -1 -1 -1 -1 -1 -1  1 -1 -1 -1 -1 -1 -1 -1  1
+</span></span><span class="line"><span class="cl">000003.jpg -1 -1 -1 -1 -1 -1  1 -1 -1 -1  1 -1 -1 -1 -1 -1 -1 -1 -1 -1  1 -1 -1  1  1 -1 -1  1 -1 -1 -1 -1 -1  1 -1 -1 -1 -1 -1  1
+</span></span><span class="line"><span class="cl">000004.jpg -1 -1  1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1  1 -1 -1  1 -1 -1 -1 -1  1 -1  1 -1  1  1 -1  1
+</span></span><span class="line"><span class="cl">000005.jpg -1  1  1 -1 -1 -1  1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1  1 -1 -1 -1 -1  1  1 -1 -1  1 -1 -1 -1 -1 -1 -1 -1 -1  1 -1 -1  1
+</span></span><span class="line"><span class="cl">000006.jpg -1  1  1 -1 -1 -1  1 -1 -1 -1 -1  1 -1 -1 -1 -1 -1 -1  1 -1 -1  1 -1 -1  1 -1 -1 -1 -1 -1 -1 -1 -1  1  1 -1  1 -1 -1  1
+</span></span><span class="line"><span class="cl">000007.jpg 1 -1  1  1 -1 -1  1  1  1 -1 -1 -1  1 -1 -1 -1 -1 -1 -1 -1  1 -1 -1 -1  1 -1 -1  1 -1 -1 -1 -1  1 -1 -1 -1 -1 -1 -1  1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Identity Annotations (available upon request)</li>
+</ul>
+<p>10,177个名人身份标识，图片的序号即是该图片对应的标签</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">000001.jpg 2880
+</span></span><span class="line"><span class="cl">000002.jpg 2937
+</span></span><span class="line"><span class="cl">000003.jpg 8692
+</span></span><span class="line"><span class="cl">000004.jpg 5805
+</span></span><span class="line"><span class="cl">000005.jpg 9295
+</span></span><span class="line"><span class="cl">000006.jpg 4153
+</span></span><span class="line"><span class="cl">000007.jpg 9040
+</span></span><span class="line"><span class="cl">000008.jpg 6369
+</span></span><span class="line"><span class="cl">000009.jpg 3332
+</span></span><span class="line"><span class="cl">000010.jpg 612
+</span></span><span class="line"><span class="cl">000011.jpg 2807
+</span></span><span class="line"><span class="cl">000012.jpg 7779
+</span></span><span class="line"><span class="cl">000013.jpg 3785
+</span></span><span class="line"><span class="cl">000014.jpg 7081
+</span></span><span class="line"><span class="cl">000015.jpg 1854
+</span></span><span class="line"><span class="cl">000016.jpg 4905
+</span></span><span class="line"><span class="cl">000017.jpg 667
+</span></span><span class="line"><span class="cl">000018.jpg 2464
+</span></span><span class="line"><span class="cl">000019.jpg 2929
+</span></span><span class="line"><span class="cl">000020.jpg 2782
+</span></span><span class="line"><span class="cl">000021.jpg 181
+</span></span><span class="line"><span class="cl">000022.jpg 6642
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Evaluation Partitions (Eval/list_eval_partition.txt)</li>
+</ul>
+<p>用于划分为training，validation及testing等数据集的标签文件，标签0对应training，标签1对应validation，标签2对应testing</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/celeba/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://Allen191819.xyz/celeba/" data-title="Celeba 数据集" data-hashtags="AI"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://Allen191819.xyz/celeba/" data-hashtag="AI"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://Allen191819.xyz/celeba/" data-title="Celeba 数据集"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="http://Allen191819.xyz/celeba/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://Allen191819.xyz/celeba/" data-title="Celeba 数据集"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="http://Allen191819.xyz/celeba/" data-title="Celeba 数据集"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ai/">AI</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mermaid/" class="prev" rel="prev" title="Markdown 嵌入关系图表"><i class="fas fa-angle-left fa-fw"></i>Markdown 嵌入关系图表</a>
+            <a href="/latexsymbols/" class="next" rel="next" title="Latex Symbols">Latex Symbols<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://allen191819.xyz/" target="_blank">Allen191819</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">陕ICP备2022000578号-1</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"gitalk":{"admin":["Allen191819"],"clientID":"942d0f6c9980c4ce50f6","clientSecret":"269260bf1224d8b8d83ea6145142be03dca83601","id":"2021-12-12T21:57:40+08:00","owner":"Allen191819","repo":"Allen191819.github.io","title":"Celeba 数据集"}},"data":{"id-1":"Allen's Blog","id-2":"Allen's Blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"LYV9H4OLKS","algoliaIndex":"index.en","algoliaSearchKey":"fcdfaf39f060c58d1f7ef273454165cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

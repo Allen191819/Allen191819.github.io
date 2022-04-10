@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Haskell 学习笔记三 - Allen</title><meta name="Description" content="Haskell 类型与类型类"><meta property="og:title" content="Haskell 学习笔记三" />
+<meta property="og:description" content="Haskell 类型与类型类" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://Allen191819.xyz/haskell-2/" /><meta property="og:image" content="http://Allen191819.xyz/haskell-2/featured-image.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-03T21:57:40+08:00" />
+<meta property="article:modified_time" content="2022-03-14T16:45:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://Allen191819.xyz/haskell-2/featured-image.png"/>
+<meta name="twitter:title" content="Haskell 学习笔记三"/>
+<meta name="twitter:description" content="Haskell 类型与类型类"/>
+<meta name="application-name" content="Allen">
+<meta name="apple-mobile-web-app-title" content="Allen"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://Allen191819.xyz/haskell-2/" /><link rel="prev" href="http://Allen191819.xyz/haskell-1/" /><link rel="next" href="http://Allen191819.xyz/haskell-3/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Haskell 学习笔记三",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/Allen191819.xyz\/haskell-2\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/Allen191819.xyz\/haskell-2\/featured-image.png",
+                            "width":  2160 ,
+                            "height":  1379 
+                        }],"genre": "posts","keywords": "Lambda, FP","wordcount":  944 ,
+        "url": "http:\/\/Allen191819.xyz\/haskell-2\/","datePublished": "2022-03-03T21:57:40+08:00","dateModified": "2022-03-14T16:45:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Allen191819","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/Allen191819.xyz\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Allen191819"
+            },"description": "Haskell 类型与类型类"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Haskell 学习笔记三</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://allen191819.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Allen191819</a></span>&nbsp;<span class="post-category">included in <a href="/categories/haskell/"><i class="far fa-folder fa-fw"></i>Haskell</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-03">2022-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;944 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/haskell-2/featured-image.png"
+        data-srcset="/haskell-2/featured-image.png, /haskell-2/featured-image.png 1.5x, /haskell-2/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/haskell-2/featured-image.png"
+        title="Haskell 类型与类型类" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#functional-programming">Functional Programming</a></li>
+    <li><a href="#目录">目录</a></li>
+    <li><a href="#types--typeclasses">Types &amp; Typeclasses</a>
+      <ul>
+        <li><a href="#type">Type</a></li>
+        <li><a href="#typeclasses">Typeclasses</a></li>
+      </ul>
+    </li>
+    <li><a href="#定义新的-type-和-typeclass">定义新的 Type 和 Typeclass</a>
+      <ul>
+        <li><a href="#algebraic-data-types">Algebraic Data Types</a></li>
+        <li><a href="#record-syntax">Record Syntax</a></li>
+        <li><a href="#type-parameters">Type parameters</a>
+          <ul>
+            <li><a href="#either">Either</a></li>
+          </ul>
+        </li>
+        <li><a href="#derived-instances">Derived instances</a></li>
+        <li><a href="#type-synonyms">Type synonyms</a>
+          <ul>
+            <li><a href="#newtype-keyword">newtype keyword</a></li>
+          </ul>
+        </li>
+        <li><a href="#recursive-data-structures">Recursive data structures</a></li>
+        <li><a href="#定义新的-typeclass">定义新的 Typeclass</a>
+          <ul>
+            <li><a href="#创建实例">创建实例</a></li>
+            <li><a href="#functor-typeclass">Functor Typeclass</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#kind">Kind</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Types &amp; Typeclasses</p>
+<h1 id="haskell-learning">Haskell Learning</h1>
+<h2 id="functional-programming">Functional Programming</h2>
+<ul>
+<li>Pure functions</li>
+<li>Immutable Data</li>
+<li>No/Less side-effects</li>
+<li>Declatative</li>
+<li>Easier to verity</li>
+</ul>
+<h2 id="目录">目录</h2>
+<!-- vim-markdown-toc GFM -->
+<ul>
+<li><a href="#types--typeclasses" rel="">Types &amp; Typeclasses</a>
+<ul>
+<li><a href="#type" rel="">Type</a></li>
+<li><a href="#typeclasses" rel="">Typeclasses</a></li>
+</ul>
+</li>
+<li><a href="#%e5%ae%9a%e4%b9%89%e6%96%b0%e7%9a%84-type-%e5%92%8c-typeclass" rel="">定义新的 Type 和 Typeclass</a>
+<ul>
+<li><a href="#algebraic-data-types" rel="">Algebraic Data Types</a></li>
+<li><a href="#record-syntax" rel="">Record Syntax</a></li>
+<li><a href="#type-parameters" rel="">Type parameters</a>
+<ul>
+<li><a href="#either" rel="">Either</a></li>
+</ul>
+</li>
+<li><a href="#derived-instances" rel="">Derived instances</a></li>
+<li><a href="#type-synonyms" rel="">Type synonyms</a>
+<ul>
+<li><a href="#newtype-keyword" rel="">newtype keyword</a></li>
+</ul>
+</li>
+<li><a href="#recursive-data-structures" rel="">Recursive data structures</a></li>
+<li><a href="#%e5%ae%9a%e4%b9%89%e6%96%b0%e7%9a%84-typeclass" rel="">定义新的 Typeclass</a>
+<ul>
+<li><a href="#%e5%88%9b%e5%bb%ba%e5%ae%9e%e4%be%8b" rel="">创建实例</a></li>
+<li><a href="#functor-typeclass" rel="">Functor Typeclass</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#kind" rel="">Kind</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+<h2 id="types--typeclasses">Types &amp; Typeclasses</h2>
+<h3 id="type">Type</h3>
+<p>Haskell 是 <code>Static Type</code>
+的，在编译时期每个表达式的值就已经确定，提高了代码的安全性，同时 Haskell
+支持类型推导。</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Int</td>
+<td>整型：-2147483648 ～ 2147483647</td>
+</tr>
+<tr>
+<td>Integer</td>
+<td>无界整型，但效率不及 Int</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>单精度浮点数</td>
+</tr>
+<tr>
+<td>Double</td>
+<td>双精度浮点数</td>
+</tr>
+<tr>
+<td>Bool</td>
+<td>布尔值</td>
+</tr>
+<tr>
+<td>Char</td>
+<td>字符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="typeclasses">Typeclasses</h3>
+<table>
+<thead>
+<tr>
+<th>Typeclasses</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eq</td>
+<td>包含可判断相等性的型别。</td>
+</tr>
+<tr>
+<td>Qrd</td>
+<td>包含可以比较大小的型别</td>
+</tr>
+<tr>
+<td>Show</td>
+<td>可用字串表示的型别</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>与 Show 相反的 Typeclass</td>
+</tr>
+<tr>
+<td>Enum</td>
+<td>连续型别-可枚举</td>
+</tr>
+<tr>
+<td>Bounded</td>
+<td>有上下限的 Typeclass</td>
+</tr>
+<tr>
+<td>Num</td>
+<td>数字的 Typeclass</td>
+</tr>
+<tr>
+<td>Integral</td>
+<td>Int Integer</td>
+</tr>
+<tr>
+<td>Floating</td>
+<td>Float Double</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">t</span> <span class="n">fromIntegral</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fromIntegral</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Num</span> <span class="n">b</span><span class="p">,</span> <span class="kt">Integral</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>formIntegral</code> 取一个整数做参数并回传一个更加通用的数字，这在同时处理整数和浮点时会尤为有用。</p>
+<h2 id="定义新的-type-和-typeclass">定义新的 Type 和 Typeclass</h2>
+<h3 id="algebraic-data-types">Algebraic Data Types</h3>
+<p><code>Bool</code> 类型的定义</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Bool</span> <span class="ow">=</span> <span class="kt">False</span> <span class="o">|</span> <span class="kt">True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>data</code> 表示我们要定义一个新的型别。<code>=</code> 的左端标明型别的名称即 Bool，<code>=</code> 的右端就是值构造子 (Value Constructor)，它们明确了该型别可能的值。<code>|</code> 读作&quot;或&quot;，所以可以这样阅读该声明：Bool 型别的值可以是 True 或 False。型别名和值构造子的首字母必大写。</p>
+<p>值构造子也是函数，可以附带参数，叫做项 <code>field</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Shape</span> <span class="ow">=</span> <span class="kt">Circle</span> <span class="kt">Float</span> <span class="kt">Float</span> <span class="kt">Float</span> <span class="o">|</span> <span class="kt">Rectangle</span> <span class="kt">Float</span> <span class="kt">Float</span> <span class="kt">Float</span> <span class="kt">Float</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>定义了一个新 Type 叫 Shape，值构造器是 Circle 和 Rectangle，Circle 接收三个参数都是 Float 类型，Rectangle 接收四个 Float 类型参数。</p>
+<p>对于 <code>Circle</code>：</p>
+<p>$$Circle :: Float \to Float \to Float \to Shape$$</p>
+<p>如果像使用 <code>show</code> 将它显示出来，则需要将它加入 <code>Show</code> 类型类。需要在代码中加入
+<code>deriving (Show)</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Shape</span> <span class="ow">=</span> <span class="kt">Circle</span> <span class="kt">Float</span> <span class="kt">Float</span> <span class="kt">Float</span> <span class="o">|</span> <span class="kt">Rectangle</span> <span class="kt">Float</span> <span class="kt">Float</span> <span class="kt">Float</span> <span class="kt">Float</span> <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Show</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>** 导出一个 Type**</p>
+<p>在文件中定义了新的 Type 之后，如果在别的文件中将其作为模块导入，则需要先导出。比如文件 Shapes.hs 中定义了 Shape 和 Point，以及其他的一些函数，那么文件开头需要写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">module</span> <span class="nn">Shapes</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span> <span class="kt">Shape</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">,</span> <span class="kt">Point</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">,</span> <span class="nf">functionA</span>
+</span></span><span class="line"><span class="cl"><span class="p">,</span> <span class="nf">functionB</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="kr">where</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中的 <code>Shape(..)</code> 导出了 <code>Shape</code> 类型和它所有的值构造器，<code>..</code>代表了它的所有值构造器。因此，<code>Shape(..)</code>相当于<code>Shape (Circle, Rectangle)</code>。</p>
+<p>如果不想要导出值构造器，即不允许使用值构造器的方法来创建<code>Shape</code>类型的变量。那么需要将<code>Shape(..)</code>替换为<code>Shape</code>，这样就只导出了<code>Shape</code>类型，而不导出其值构造器。</p>
+<h3 id="record-syntax">Record Syntax</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Person</span> <span class="ow">=</span> <span class="kt">Person</span> <span class="p">{</span> <span class="n">firstName</span> <span class="ow">::</span> <span class="kt">String</span>
+</span></span><span class="line"><span class="cl">                     <span class="p">,</span> <span class="n">lastName</span> <span class="ow">::</span> <span class="kt">String</span>
+</span></span><span class="line"><span class="cl">                     <span class="p">,</span> <span class="n">age</span> <span class="ow">::</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl">                     <span class="p">,</span> <span class="n">height</span> <span class="ow">::</span> <span class="kt">Float</span>
+</span></span><span class="line"><span class="cl">                     <span class="p">,</span> <span class="n">phoneNumber</span> <span class="ow">::</span> <span class="kt">String</span>
+</span></span><span class="line"><span class="cl">                     <span class="p">,</span> <span class="n">flavor</span> <span class="ow">::</span> <span class="kt">String</span>
+</span></span><span class="line"><span class="cl">                     <span class="p">}</span> <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Show</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>调用时：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="kr">let</span> <span class="n">person</span> <span class="ow">=</span> <span class="kt">Person</span> <span class="p">{</span><span class="n">firstName</span> <span class="ow">=</span> <span class="s">&#34;Allen&#34;</span><span class="p">,</span><span class="n">lastName</span> <span class="ow">=</span> <span class="s">&#34;Ma&#34;</span><span class="p">,</span><span class="n">age</span> <span class="ow">=</span> <span class="mi">18</span><span class="p">,</span> <span class="n">height</span> <span class="ow">=</span> <span class="mf">178.0</span><span class="p">,</span> <span class="n">phoneNumber</span> <span class="ow">=</span><span class="s">&#34;1008611&#34;</span><span class="p">,</span><span class="n">flavor</span> <span class="ow">=</span> <span class="s">&#34;Haskell&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">person</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Person</span> <span class="p">{</span><span class="n">firstName</span> <span class="ow">=</span> <span class="s">&#34;Allen&#34;</span><span class="p">,</span> <span class="n">lastName</span> <span class="ow">=</span> <span class="s">&#34;Ma&#34;</span><span class="p">,</span> <span class="n">age</span> <span class="ow">=</span> <span class="mi">18</span><span class="p">,</span> <span class="n">height</span> <span class="ow">=</span> <span class="mf">178.0</span><span class="p">,</span> <span class="n">phoneNumber</span> <span class="ow">=</span> <span class="s">&#34;1008611&#34;</span><span class="p">,</span> <span class="n">flavor</span> <span class="ow">=</span> <span class="s">&#34;Haskell&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">lastName</span> <span class="n">person</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Ma&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Prelude</span><span class="o">&gt;</span> <span class="n">age</span> <span class="n">person</span>
+</span></span><span class="line"><span class="cl"><span class="mi">18</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="type-parameters">Type parameters</h3>
+<p>值构造器可以接收参数，类型也可以接收参数，这样它就成为了类型构造器（type constructors）。如 Maybe 的定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Maybe</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Nothing</span> <span class="o">|</span> <span class="kt">Just</span> <span class="n">a</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它的值是 Nothing 时，类型为 Maybe a，是多态的（polymorphic）。
+他的值不是 Nothing 时，类型取决于值 Just a 中 a 的类型，可以构造出 Maybe Int、Maybe [Char]等多种类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kt">Nothing</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Just</span> <span class="mi">1</span> <span class="ow">::</span> <span class="kt">Num</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">Maybe</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Just</span> <span class="sc">&#39;a&#39;</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="kt">Char</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Just</span> <span class="s">&#34;abc&#34;</span> <span class="ow">::</span> <span class="kt">Maybe</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="either">Either</h4>
+<p>Either 是一个类型构造器，它有两个值构造器，定义是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Either</span> <span class="n">a</span> <span class="n">b</span> <span class="ow">=</span> <span class="kt">Left</span> <span class="n">a</span> <span class="o">|</span> <span class="kt">Right</span> <span class="n">b</span> <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Eq</span><span class="p">,</span> <span class="kt">Ord</span><span class="p">,</span> <span class="kt">Read</span><span class="p">,</span> <span class="kt">Show</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果使用了 Left，那它的 a 的类型就是具体的；如果使用了 Right，那它的 b 的类型就是具体的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">Right</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Right</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">Left</span> <span class="s">&#34;w00t&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Left</span> <span class="s">&#34;w00t&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">t</span> <span class="kt">Right</span> <span class="sc">&#39;a&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Right</span> <span class="sc">&#39;a&#39;</span> <span class="ow">::</span> <span class="kt">Either</span> <span class="n">a</span> <span class="kt">Char</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">t</span> <span class="kt">Left</span> <span class="kt">True</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Left</span> <span class="kt">True</span> <span class="ow">::</span> <span class="kt">Either</span> <span class="kt">Bool</span> <span class="n">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Either 可以看作 Maybe 的补充，比如 Maybe 在使用时，出现异常可以返回 Nothing，但只是一个 Nothing，不包含任何信息；但 Either 包含左值和右值，正常结果返回右值，而出现异常就可以返回包含错误信息的左值.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">safeDiv</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Maybe</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">safeDiv</span> <span class="kr">_</span> <span class="mi">0</span> <span class="ow">=</span> <span class="kt">Nothing</span>
+</span></span><span class="line"><span class="cl"><span class="nf">safeDiv</span> <span class="n">x</span> <span class="n">y</span> <span class="ow">=</span> <span class="kt">Just</span> <span class="p">(</span><span class="n">x</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">safeDiv</span> <span class="mi">4</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Just</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">safeDiv</span> <span class="mi">1</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Nothing</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">safeDiv</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Either</span> <span class="kt">String</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">safeDiv</span> <span class="kr">_</span> <span class="mi">0</span> <span class="ow">=</span> <span class="kt">Left</span> <span class="s">&#34;Divided by zero&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">safeDiv</span> <span class="n">x</span> <span class="n">y</span> <span class="ow">=</span> <span class="kt">Right</span> <span class="p">(</span><span class="n">x</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">safeDiv</span> <span class="mi">4</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Right</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">safeDiv</span> <span class="mi">1</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Left</span> <span class="s">&#34;Divided by zero&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="derived-instances">Derived instances</h3>
+<p>想要使一个定义的类满足某些 Typeclass 的需求，需要从其派生（derive），比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Day</span> <span class="ow">=</span> <span class="kt">Monday</span> <span class="o">|</span> <span class="kt">Tuesday</span> <span class="o">|</span> <span class="kt">Wednesday</span> <span class="o">|</span> <span class="kt">Thursday</span> <span class="o">|</span> <span class="kt">Friday</span> <span class="o">|</span> <span class="kt">Saturday</span> <span class="o">|</span> <span class="kt">Sunday</span>
+</span></span><span class="line"><span class="cl">           <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Eq</span><span class="p">,</span> <span class="kt">Ord</span><span class="p">,</span> <span class="kt">Show</span><span class="p">,</span> <span class="kt">Read</span><span class="p">,</span> <span class="kt">Bounded</span><span class="p">,</span> <span class="kt">Enum</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样 Day 类型的值（Monday ～ Sunday）之间就可以比较是否相等（从 Eq 派生），比较大小（从 Ord 派生，左侧为小，右侧为大），显示成字符串（从 Show 派生），从字符串中读取（从 Read 派生），包含边界（从 Bounded 派生），可以枚举（从 Enum 派生，按照值构造器中的顺序依次向右）</p>
+<h3 id="type-synonyms">Type synonyms</h3>
+<p>为了阅读方便，书写简便，可以使用 type 关键字为已有类型创建别名（synonyms）。比如 String 的定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">type</span> <span class="kt">String</span> <span class="ow">=</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在所有需要使用字符串（即[Char]）的地方都可以使用 String 来代替，它们是完全一致的，只是 String 更简便易读。
+同时，类型别名也可以接收类型参数</p>
+<h4 id="newtype-keyword">newtype keyword</h4>
+<p>除了<code>data</code>、<code>type</code>关键字之外，还可以用<code>newtype</code>关键字来定义一个新的类型，比如<code>Control.Applicative</code>模块中的<code>ZipList</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">newtype</span> <span class="kt">ZipList</span> <span class="n">a</span> <span class="ow">=</span> <span class="p">{</span> <span class="n">getZipList</span> <span class="ow">::</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>不同于<code>type</code>，它不是别名，可以使用<code>record</code>语法来直接定义取出值的函数</p>
+</li>
+<li>
+<p>不同于<code>data</code>，它只能有一个值构造器，但是速度要比<code>data</code>快，而且更加懒惰</p>
+</li>
+</ul>
+<h3 id="recursive-data-structures">Recursive data structures</h3>
+<p>一个类型可以进行递归定义</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">Tree</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">EmptyTree</span> <span class="o">|</span> <span class="kt">Node</span> <span class="n">a</span> <span class="p">(</span><span class="kt">Tree</span> <span class="n">a</span><span class="p">)</span> <span class="p">(</span><span class="kt">Tree</span> <span class="n">a</span><span class="p">)</span> <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Show</span><span class="p">,</span> <span class="kt">Read</span><span class="p">,</span> <span class="kt">Eq</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="定义新的-typeclass">定义新的 Typeclass</h3>
+<p>定义一个新的 Typeclass 需要使用 <code>class</code> 关键字，例如<code>Eq</code>类型类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">class</span> <span class="kt">Eq</span> <span class="n">a</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="o">==</span><span class="p">)</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="o">/=</span><span class="p">)</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">==</span> <span class="n">y</span> <span class="ow">=</span> <span class="n">not</span> <span class="p">(</span><span class="n">x</span> <span class="o">/=</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">/=</span> <span class="n">y</span> <span class="ow">=</span> <span class="n">not</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 a 是一个类型变量，前两行声明了需要实现的函数的名字及其类型，后两行表明了需要的函数之间可以相互定义（不必要）。</p>
+<p>包含了后两行之后，只定义(==)函数或者(/=)函数都可以完成全部定义，它们((==) | (/=))成为这个类型类的最小完整定义（minimal complete definition）</p>
+<p>查看一个类型类的成员需要实现的函数可以在 GHCi 中使用<code>:info</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">info</span> <span class="kt">Eq</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="创建实例">创建实例</h4>
+<p>是一个类型成为一个类型类实例可以通过 <code>deriving</code> 来自动完成，也可以通过使用
+<code>instance</code> 关键字来手动完成，比如使 Point 成为是 Show 的实例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">instance</span> <span class="kt">Show</span> <span class="kt">Point</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">show</span> <span class="p">(</span><span class="kt">Point</span> <span class="n">x</span> <span class="n">y</span><span class="p">)</span> <span class="ow">=</span> <span class="s">&#34;(&#34;</span> <span class="o">++</span> <span class="n">show</span> <span class="n">x</span> <span class="o">++</span> <span class="s">&#34;, &#34;</span> <span class="o">++</span> <span class="n">show</span> <span class="n">y</span> <span class="o">++</span> <span class="s">&#34;)&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- in ghci</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">Point</span> <span class="mf">1.0</span> <span class="mf">2.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就可以自定义显示的内容，否则使用 deriving 的话只会直接将其转化为字符串。</p>
+<p>同时也要注意类型和类型构造器的区别，传入给 instance 的第二个参数应该为类型而不是类型构造器，比如 Maybe：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">instance</span> <span class="kt">Eq</span> <span class="kt">Maybe</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 错误用法，因为Maybe是类型构造器而不是类型</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">instance</span> <span class="kt">Eq</span> <span class="p">(</span><span class="kt">Maybe</span> <span class="n">m</span><span class="p">)</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 错误用法，因为m不一定是Eq的成员</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">instance</span> <span class="p">(</span><span class="kt">Eq</span> <span class="n">m</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="kt">Eq</span> <span class="p">(</span><span class="kt">Maybe</span> <span class="n">m</span><span class="p">)</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">Just</span> <span class="n">x</span> <span class="o">==</span> <span class="kt">Just</span> <span class="n">y</span> <span class="ow">=</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">Nothing</span> <span class="o">==</span> <span class="kt">Nothing</span> <span class="ow">=</span> <span class="kt">True</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">_</span> <span class="o">==</span> <span class="kr">_</span> <span class="ow">=</span> <span class="kt">False</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="functor-typeclass">Functor Typeclass</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">class</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="kr">where</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fmap</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="n">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 f 是一个类型构造器，而不是一个具体类型</p>
+<h2 id="kind">Kind</h2>
+<p>一个值的类型叫做类型 <code>Type</code> ，而一个类型的类型叫做 <code>Kind</code>。可以通过 GHCi 中 <code>:k</code> 来查看 Kind：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">k</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Int</span> <span class="ow">::</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">k</span> <span class="kt">Maybe</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Maybe</span> <span class="ow">::</span> <span class="o">*</span> <span class="ow">-&gt;</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">k</span> <span class="kt">Maybe</span> <span class="kt">Int</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Maybe</span> <span class="kt">Int</span> <span class="ow">::</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="kt">:</span><span class="n">k</span> <span class="kt">Either</span>
+</span></span><span class="line"><span class="cl"><span class="kt">Either</span> <span class="ow">::</span> <span class="o">*</span> <span class="ow">-&gt;</span> <span class="o">*</span> <span class="ow">-&gt;</span> <span class="o">*</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中的星号 * 代表了一个具体类型（concrete type）。Int 本身就是一个具体类型，所以 Int 的 Kind 是 *。而 Maybe 是一个类型构造器，它接收一个具体类型返回一个新的具体类型，所以 Maybe 的 Kind 是 * $\to$ *。如果给 Maybe 传入了一个 Int，那么得到的 Maybe Int 就是一个具体的类型，它的 Kind 就是 *。Either 也是一个类型构造器，但它接收两个类型才产生一个新的类型，所以 Either 的 Kind 是 * $\to$ _ $\to$ _。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-03-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/haskell-2/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://Allen191819.xyz/haskell-2/" data-title="Haskell 学习笔记三" data-hashtags="Lambda,FP"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://Allen191819.xyz/haskell-2/" data-hashtag="Lambda"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://Allen191819.xyz/haskell-2/" data-title="Haskell 学习笔记三"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="http://Allen191819.xyz/haskell-2/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://Allen191819.xyz/haskell-2/" data-title="Haskell 学习笔记三"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="http://Allen191819.xyz/haskell-2/" data-title="Haskell 学习笔记三"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/lambda/">Lambda</a>,&nbsp;<a href="/tags/fp/">FP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/haskell-1/" class="prev" rel="prev" title="Haskell 学习笔记二"><i class="fas fa-angle-left fa-fw"></i>Haskell 学习笔记二</a>
+            <a href="/haskell-3/" class="next" rel="next" title="Haskell 学习笔记四">Haskell 学习笔记四<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://allen191819.xyz/" target="_blank">Allen191819</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">陕ICP备2022000578号-1</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"gitalk":{"admin":["Allen191819"],"clientID":"942d0f6c9980c4ce50f6","clientSecret":"269260bf1224d8b8d83ea6145142be03dca83601","id":"2022-03-03T21:57:40+08:00","owner":"Allen191819","repo":"Allen191819.github.io","title":"Haskell 学习笔记三"}},"data":{"id-1":"Allen's Blog","id-2":"Allen's Blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"LYV9H4OLKS","algoliaIndex":"index.en","algoliaSearchKey":"fcdfaf39f060c58d1f7ef273454165cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

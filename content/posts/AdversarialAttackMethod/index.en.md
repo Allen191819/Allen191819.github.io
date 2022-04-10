@@ -5,7 +5,7 @@ date: 2021-11-10
 lastmod: 2021-12-01T16:45:40+08:00
 draft: false
 author: "Allen191819"
-authorLink: "https://dillonzq.com"
+authorLink: "https://allen191819.xyz"
 description: "对于FGSM, C&W, UAP等经典对抗攻击方法的学习笔记。"
 tags: ["Daily study", "AI security"]
 categories: ["Adversarial Attack"]

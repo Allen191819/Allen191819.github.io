@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Haskell 学习笔记一 - Allen</title><meta name="Description" content="Haskell 基础语法"><meta property="og:title" content="Haskell 学习笔记一" />
+<meta property="og:description" content="Haskell 基础语法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://Allen191819.xyz/haskell/" /><meta property="og:image" content="http://Allen191819.xyz/haskell/featured-image.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-02T21:57:40+08:00" />
+<meta property="article:modified_time" content="2020-03-02T16:45:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://Allen191819.xyz/haskell/featured-image.png"/>
+<meta name="twitter:title" content="Haskell 学习笔记一"/>
+<meta name="twitter:description" content="Haskell 基础语法"/>
+<meta name="application-name" content="Allen">
+<meta name="apple-mobile-web-app-title" content="Allen"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://Allen191819.xyz/haskell/" /><link rel="prev" href="http://Allen191819.xyz/latexsymbols/" /><link rel="next" href="http://Allen191819.xyz/haskell-1/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Haskell 学习笔记一",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/Allen191819.xyz\/haskell\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/Allen191819.xyz\/haskell\/featured-image.png",
+                            "width":  1920 ,
+                            "height":  1080 
+                        }],"genre": "posts","keywords": "Lambda, FP","wordcount":  748 ,
+        "url": "http:\/\/Allen191819.xyz\/haskell\/","datePublished": "2022-03-02T21:57:40+08:00","dateModified": "2020-03-02T16:45:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Allen191819","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/Allen191819.xyz\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Allen191819"
+            },"description": "Haskell 基础语法"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Haskell 学习笔记一</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://allen191819.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Allen191819</a></span>&nbsp;<span class="post-category">included in <a href="/categories/haskell/"><i class="far fa-folder fa-fw"></i>Haskell</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-02">2022-03-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;748 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/haskell/featured-image.png"
+        data-srcset="/haskell/featured-image.png, /haskell/featured-image.png 1.5x, /haskell/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/haskell/featured-image.png"
+        title="Haskell 基础语法" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#functional-programming">Functional Programming</a></li>
+    <li><a href="#目录">目录</a></li>
+    <li><a href="#基础语法">基础语法</a>
+      <ul>
+        <li><a href="#基础运算">基础运算</a></li>
+        <li><a href="#函数调用">函数调用</a></li>
+        <li><a href="#list">List</a></li>
+        <li><a href="#list-comprehension">List comprehension</a></li>
+        <li><a href="#tuple">Tuple</a></li>
+      </ul>
+    </li>
+    <li><a href="#syntax-in-functions">Syntax in Functions</a>
+      <ul>
+        <li><a href="#定义函数">定义函数</a></li>
+        <li><a href="#pattern-matching">Pattern matching</a></li>
+        <li><a href="#guards">Guards</a></li>
+        <li><a href="#关键字-where-和-let">关键字 where 和 let</a></li>
+        <li><a href="#case-expressions">Case expressions</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Haskell 基础语法</p>
+<h1 id="haskell-learning">Haskell Learning</h1>
+<h2 id="functional-programming">Functional Programming</h2>
+<ul>
+<li>Pure functions</li>
+<li>Immutable Data</li>
+<li>No/Less side-effects</li>
+<li>Declatative</li>
+<li>Easier to verity</li>
+</ul>
+<h2 id="目录">目录</h2>
+<!-- vim-markdown-toc GFM -->
+<ul>
+<li><a href="#%e5%9f%ba%e7%a1%80%e8%af%ad%e6%b3%95" rel="">基础语法</a>
+<ul>
+<li><a href="#%e5%9f%ba%e7%a1%80%e8%bf%90%e7%ae%97" rel="">基础运算</a></li>
+<li><a href="#%e5%87%bd%e6%95%b0%e8%b0%83%e7%94%a8" rel="">函数调用</a></li>
+<li><a href="#list" rel="">List</a></li>
+<li><a href="#list-comprehension" rel="">List comprehension</a></li>
+<li><a href="#tuple" rel="">Tuple</a></li>
+</ul>
+</li>
+<li><a href="#syntax-in-functions" rel="">Syntax in Functions</a>
+<ul>
+<li><a href="#%e5%ae%9a%e4%b9%89%e5%87%bd%e6%95%b0" rel="">定义函数</a></li>
+<li><a href="#pattern-matching" rel="">Pattern matching</a></li>
+<li><a href="#guards" rel="">Guards</a></li>
+<li><a href="#%e5%85%b3%e9%94%ae%e5%ad%97-where-%e5%92%8c-let" rel="">关键字 where 和 let</a></li>
+<li><a href="#case-expressions" rel="">Case expressions</a></li>
+</ul>
+</li>
+</ul>
+<!-- vim-markdown-toc -->
+<h2 id="基础语法">基础语法</h2>
+<h3 id="基础运算">基础运算</h3>
+<table>
+<thead>
+<tr>
+<th>Char</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+ - \* /</code></td>
+<td>加减乘除</td>
+</tr>
+<tr>
+<td><code>div</code></td>
+<td>整除</td>
+</tr>
+<tr>
+<td><code>mod</code></td>
+<td>取模</td>
+</tr>
+<tr>
+<td><code>True Flase</code></td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>|| &amp;&amp; not</code></td>
+<td>或且非</td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>条件判断 相等</td>
+</tr>
+<tr>
+<td><code>\\=</code></td>
+<td>条件判断 不相等</td>
+</tr>
+</tbody>
+</table>
+<h3 id="函数调用">函数调用</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="n">max</span> <span class="mi">1</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>中缀函数与前缀函数的转换(<code>prefix</code> &amp; <code>infix</code>)</p>
+<ul>
+<li>对前缀函数加<code>``</code>使其变成中缀函数</li>
+<li>对中缀函数加<code>()</code>使其变成前缀函数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="mi">4</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="p">`</span><span class="n">max</span><span class="p">`</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="mi">1</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">||</span><span class="p">)</span> <span class="kt">True</span> <span class="kt">False</span>
+</span></span><span class="line"><span class="cl"><span class="kt">True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="list">List</h3>
+<p><strong>List 常用函数</strong></p>
+<ul>
+<li>
+<p><code>(++)</code> :: [a] -&gt; [a] -&gt; [a]：合并两个列表</p>
+</li>
+<li>
+<p><code>(:)</code> :: a -&gt; [a] -&gt; [a]：将单个元素并入列表。[1, 2, 3]是 1:2:3:[]的语法糖</p>
+</li>
+<li>
+<p><code>(!!)</code> :: [a] -&gt; Int -&gt; a：通过索引取出某个位置上的元素。a !! 1 相当于 Python 中的 a[1]</p>
+</li>
+<li>
+<p><code>head</code> :: [a] -&gt; a：返回列表的第一个元素</p>
+</li>
+<li>
+<p><code>tail</code> :: [a] -&gt; [a]：返回列表中除去第一个元素后的列表（若只有一个元素则返回空列表<i class="far fa-square fa-fw"></i> ）</p>
+</li>
+<li>
+<p><code>last</code> :: [a] -&gt; a：返回列表中的最后一个元素</p>
+</li>
+<li>
+<p><code>init</code> :: [a] -&gt; [a]：返回列表中除去最后一个元素后的列表</p>
+</li>
+<li>
+<p><code>length</code> :: Foldable t =&gt; t a -&gt; Int：返回列表的长度</p>
+</li>
+<li>
+<p><code>null</code> :: Foldable t =&gt; t a -&gt; Bool：返回列表是否为空</p>
+</li>
+<li>
+<p><code>reverse</code> :: [a] -&gt; [a]：返回翻转后的列表</p>
+</li>
+<li>
+<p><code>take</code> :: Int -&gt; [a] -&gt; [a]：返回列表 a 的前 n 个元素的列表(take n a)</p>
+</li>
+<li>
+<p><code>drop</code> :: Int -&gt; [a] -&gt; [a]：返回列表 a 中除去前 n 个元素后的列表(drop n a)</p>
+</li>
+<li>
+<p><code>maximum</code> :: (Foldable t, Ord a) =&gt; t a -&gt; a：返回列表中的最大值</p>
+</li>
+<li>
+<p><code>minimum</code> :: (Foldable t, Ord a) =&gt; t a -&gt; a：返回列表中的最小值</p>
+</li>
+<li>
+<p><code>sum</code> :: (Foldable t, Num a) =&gt; t a -&gt; a：返回列表中所有元素的和</p>
+</li>
+<li>
+<p><code>product</code> :: (Foldable t, Num a) =&gt; t a -&gt; a：返回列表中所有元素的积</p>
+</li>
+<li>
+<p><code>elem</code> :: (Foldable t, Eq a) =&gt; t a -&gt; Bool：判断值 n 是否在列表 a 中</p>
+</li>
+</ul>
+<p><strong>Range</strong>: <code>..</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="o">..</span> <span class="mi">10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span><span class="sc">&#39;a&#39;</span> <span class="o">..</span> <span class="sc">&#39;z&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;abcdefghijklmnopqrstuvwxyz&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span><span class="sc">&#39;K&#39;</span> <span class="o">..</span> <span class="sc">&#39;Z&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;KLMNOPQRSTUVWXYZ&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span> <span class="o">..</span> <span class="mi">20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span> <span class="o">..</span> <span class="mi">20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">18</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span> <span class="o">..</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>haskell 是惰性的，生成无穷列表之后通过 <code>take</code> 生成 list:</p>
+<ul>
+<li>
+<p><code>cycle</code> :: [a] -&gt; [a]：将原列表不断循环生成无穷列表</p>
+</li>
+<li>
+<p><code>repeat</code> :: a -&gt; [a]：将传入的值不断重复生成无穷列表</p>
+<ul>
+<li><code>replicate</code> :: Int -&gt; a -&gt; [a]：将值 a 重复 n 次，返回生成的列表(replicate n a)</li>
+</ul>
+</li>
+</ul>
+<h3 id="list-comprehension">List comprehension</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span> <span class="o">..</span> <span class="mi">10</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span> <span class="o">..</span> <span class="mi">10</span><span class="p">],</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">12</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span> <span class="n">x</span> <span class="o">|</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">50</span> <span class="o">..</span> <span class="mi">100</span><span class="p">],</span> <span class="n">x</span> <span class="p">`</span><span class="n">mod</span><span class="p">`</span> <span class="mi">7</span> <span class="o">==</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">52</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">66</span><span class="p">,</span><span class="mi">73</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">87</span><span class="p">,</span><span class="mi">94</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ghci</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="o">|</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">y</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">55</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">110</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="tuple">Tuple</h3>
+<p>Haskell 中的元组可以有不同的长度，元素类型也可以不同，元组类型由其中的所有元素的类型共同决定。二元元组的常用函数：</p>
+<ul>
+<li><code>fst</code> :: (a, b) -&gt; a：返回含有两个元素元组中的第一个元素</li>
+<li><code>snd</code> :: (a, b) -&gt; b：返回含有两个元素元组中的第二个元素</li>
+<li><code>zip</code> :: [a] -&gt; [b] -&gt; [(a, b)]：接收两个列表，返回一个列表，每个元素是依次将两个列表中元素配对成的二元组</li>
+</ul>
+<h2 id="syntax-in-functions">Syntax in Functions</h2>
+<h3 id="定义函数">定义函数</h3>
+<p>直接定义一个函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">add&#39;</span> <span class="n">x</span> <span class="n">y</span> <span class="ow">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这时 Haskell 会自动推断函数的类型为(Num a) =&gt; a -&gt; a -&gt; a。但是最好在定义函数前声明函数的类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">add&#39;</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Num</span> <span class="n">a</span><span class="p">)</span><span class="ow">=&gt;</span><span class="n">a</span><span class="ow">-&gt;</span><span class="n">a</span><span class="ow">-&gt;</span><span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">add&#39;</span> <span class="n">x</span> <span class="n">y</span> <span class="ow">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="pattern-matching">Pattern matching</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">luckyNumber</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Integral</span> <span class="n">a</span><span class="p">)</span><span class="ow">=&gt;</span><span class="n">a</span><span class="ow">-&gt;</span><span class="kt">String</span>
+</span></span><span class="line"><span class="cl"><span class="nf">luckyNumber</span> <span class="mi">6</span> <span class="ow">=</span> <span class="s">&#34;Lucky number six!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">luckyNumber</span> <span class="n">x</span> <span class="ow">=</span> <span class="s">&#34;Sorry, you&#39;re out of luck.&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：在定义模式时，一定要留一个万能匹配的模式，这样我们的进程就不会为了不可预料的输入而崩溃了。</p>
+<p>(x:xs) 模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">sum&#39;</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Num</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum&#39;</span> <span class="kt">[]</span> <span class="ow">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum&#39;</span> <span class="p">(</span><span class="n">x</span><span class="kt">:</span><span class="n">xs</span><span class="p">)</span> <span class="ow">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">sum&#39;</span> <span class="n">xs</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>as 模式:将一个名字和 @ 置于模式前，可以在按模式分割什么东西时仍保留对其整体的引用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">capital</span> <span class="ow">::</span> <span class="kt">String</span> <span class="ow">-&gt;</span> <span class="kt">String</span>
+</span></span><span class="line"><span class="cl"><span class="nf">capital</span> <span class="s">&#34;&#34;</span> <span class="ow">=</span> <span class="s">&#34;Empty string, whoops!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">capital</span> <span class="n">all</span><span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="kt">:</span><span class="n">xs</span><span class="p">)</span> <span class="ow">=</span> <span class="s">&#34;The first letter of &#34;</span> <span class="o">++</span> <span class="n">all</span> <span class="o">++</span> <span class="s">&#34; is &#34;</span> <span class="o">++</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="guards">Guards</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kt">Compare</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Ord</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Ordering</span>
+</span></span><span class="line"><span class="cl"><span class="nf">a</span> <span class="p">`</span><span class="kt">Compare</span><span class="p">`</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span>     <span class="ow">=</span> <span class="kt">GT</span>
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span>    <span class="ow">=</span> <span class="kt">EQ</span>
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">otherwise</span> <span class="ow">=</span> <span class="kt">LT</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="关键字-where-和-let">关键字 where 和 let</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">bmiTell</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">RealFloat</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">String</span>
+</span></span><span class="line"><span class="cl"><span class="nf">bmiTell</span> <span class="n">weight</span> <span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">bmi</span> <span class="o">&lt;=</span> <span class="mf">18.5</span> <span class="ow">=</span> <span class="s">&#34;You&#39;re underweight&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">bmi</span> <span class="o">&lt;=</span> <span class="mf">25.0</span> <span class="ow">=</span> <span class="s">&#34;You&#39;re supposedly normal.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">bmi</span> <span class="o">&lt;=</span> <span class="mf">30.0</span> <span class="ow">=</span> <span class="s">&#34;You&#39;re fat!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">|</span> <span class="n">otherwise</span>   <span class="ow">=</span> <span class="s">&#34;You&#39;re a whale!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">where</span> <span class="n">bmi</span> <span class="ow">=</span> <span class="n">weight</span> <span class="o">/</span> <span class="n">height</span> <span class="o">^</span> <span class="mi">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">quicksort</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Ord</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">quicksort</span> <span class="kt">[]</span> <span class="ow">=</span> <span class="kt">[]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">quicksort</span> <span class="p">(</span><span class="n">x</span> <span class="kt">:</span> <span class="n">xs</span><span class="p">)</span> <span class="ow">=</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">let</span> <span class="n">smallerSorted</span> <span class="ow">=</span> <span class="n">quicksort</span> <span class="p">[</span><span class="n">a</span> <span class="o">|</span> <span class="n">a</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">,</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="n">biggerSorted</span> <span class="ow">=</span> <span class="n">quicksort</span> <span class="p">[</span><span class="n">a</span> <span class="o">|</span> <span class="n">a</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">,</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="kr">in</span> <span class="n">smallerSorted</span> <span class="o">++</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">++</span> <span class="n">biggerSorted</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="case-expressions">Case expressions</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">describeList</span> <span class="ow">::</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">String</span>
+</span></span><span class="line"><span class="cl"><span class="nf">describeList</span> <span class="n">xs</span> <span class="ow">=</span> <span class="s">&#34;The list is &#34;</span> <span class="o">++</span> <span class="kr">case</span> <span class="n">xs</span> <span class="kr">of</span> <span class="kt">[]</span> <span class="ow">-&gt;</span> <span class="s">&#34;empty.&#34;</span>
+</span></span><span class="line"><span class="cl">                                               <span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="s">&#34;a singleton list.&#34;</span>
+</span></span><span class="line"><span class="cl">                                               <span class="n">xs</span> <span class="ow">-&gt;</span> <span class="s">&#34;a longer list.&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">case</span> <span class="n">expression</span> <span class="kr">of</span> <span class="n">pattern</span> <span class="ow">-&gt;</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">pattern</span> <span class="ow">-&gt;</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">pattern</span> <span class="ow">-&gt;</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">                   <span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-03-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/haskell/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://Allen191819.xyz/haskell/" data-title="Haskell 学习笔记一" data-hashtags="Lambda,FP"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://Allen191819.xyz/haskell/" data-hashtag="Lambda"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://Allen191819.xyz/haskell/" data-title="Haskell 学习笔记一"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="http://Allen191819.xyz/haskell/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://Allen191819.xyz/haskell/" data-title="Haskell 学习笔记一"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="http://Allen191819.xyz/haskell/" data-title="Haskell 学习笔记一"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/lambda/">Lambda</a>,&nbsp;<a href="/tags/fp/">FP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/latexsymbols/" class="prev" rel="prev" title="Latex Symbols"><i class="fas fa-angle-left fa-fw"></i>Latex Symbols</a>
+            <a href="/haskell-1/" class="next" rel="next" title="Haskell 学习笔记二">Haskell 学习笔记二<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://allen191819.xyz/" target="_blank">Allen191819</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">陕ICP备2022000578号-1</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"gitalk":{"admin":["Allen191819"],"clientID":"942d0f6c9980c4ce50f6","clientSecret":"269260bf1224d8b8d83ea6145142be03dca83601","id":"2022-03-02T21:57:40+08:00","owner":"Allen191819","repo":"Allen191819.github.io","title":"Haskell 学习笔记一"}},"data":{"id-1":"Allen's Blog","id-2":"Allen's Blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"LYV9H4OLKS","algoliaIndex":"index.en","algoliaSearchKey":"fcdfaf39f060c58d1f7ef273454165cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

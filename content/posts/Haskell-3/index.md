@@ -5,7 +5,7 @@ date: 2022-03-04T21:57:40+08:00
 lastmod: 2022-03-04T16:45:40+08:00
 draft: false
 author: "Allen191819"
-authorLink: "https://dillonzq.com"
+authorLink: "https://allen191819.xyz"
 description: "Haskell I/O"
 
 tags: ["Lambda", "FP"]

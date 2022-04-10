@@ -5,7 +5,7 @@ date: 2021-11-10T21:57:40+08:00
 lastmod: 2021-11-14T16:45:40+08:00
 draft: false
 author: "Allen191819"
-authorLink: "https://dillonzq.com"
+authorLink: "https://allen191819.xyz"
 description: "Github 中部分经典对抗攻击库整理"
 
 tags: ["Daily study", "AI security"]
@@ -15,6 +15,9 @@ lightgallery: true
 
 math:
     enable: true
+resources:
+- name: featured-image
+  src: featured-image.jpg
 ---
 
 

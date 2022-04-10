@@ -5,7 +5,7 @@ date: 2022-02-27T21:57:40+08:00
 lastmod: 2020-02-27T16:45:40+08:00
 draft: false
 author: "Allen191819"
-authorLink: "https://dillonzq.com"
+authorLink: "https://allen191819.xyz"
 description: "Latex 符号速查"
 
 tags: ["Latex", "Cheetsheet"]
@@ -15,6 +15,9 @@ lightgallery: true
 
 math:
     enable: true
+resources:
+- name: featured-image
+  src: featured-image.jpg
 ---
 
 
