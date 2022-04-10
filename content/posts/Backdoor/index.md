@@ -17,7 +17,7 @@ math:
     enable: true
 resources:
 - name: featured-image
-  src: featured-image.jpg
+  src: featured-image.png
 ---
 
 对于 Hidden trigger backdoor attack 的复现

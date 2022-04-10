@@ -4,9 +4,43 @@
         <link>https://allen191819.xyz/</link>
         <description>About This Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>mzm191891@163.com (Allen191819)</managingEditor>
-            <webMaster>mzm191891@163.com (Allen191819)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 04 Mar 2022 21:57:40 &#43;0800</lastBuildDate>
+            <webMaster>mzm191891@163.com (Allen191819)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 10 Apr 2022 09:57:40 &#43;0800</lastBuildDate>
             <atom:link href="https://allen191819.xyz/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>水母 水母 如此脆弱的生物</title>
+    <link>https://allen191819.xyz/ava/</link>
+    <pubDate>Sun, 10 Apr 2022 09:57:40 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://allen191819.xyz/ava/</guid>
+    <description><![CDATA[水母之歌   有时也会厌烦逆来顺受的自己 偶尔也会放空大脑 期待天降的转机
+海浪带我去哪里 我就去哪里
+伤人的词语无法传播 水下安静到窒息
+水母 水母 普通透明的生物 期待委婉的保护
+不再 复述 相对失败的酸楚 尝试享受着独处
+请来一束追光 照亮这海底
+学会人间技巧 参与了游戏
+反正眼泪可以融化在海里
+散漫自在也被视为你恣意
+水母 水母 普通透明的生物 期待委婉的保护
+不再 复述 相对失败的酸楚 尝试享受着独处
+努力生长了刺 却没学会保护自己
+现在说出愿望 讨一个拥抱来不来得及
+见不到想见的世界和尽头的你
+想过变换姿态只能反射阳光的色彩
+水母 水母 普通透明的生物 期待委婉的保护
+不再 复述 相对失败的酸楚 尝试享受着独处
+请来一束追光 照亮这海底
+学会人间技巧 参与了游戏
+反正眼泪可以 融化在海里
+散漫自在也被视为你恣意
+水母水母 随波逐流的生物 等一个短暂的停驻
+逐渐领悟 缓慢弥补的脚步 终会找到 归属
+ Spring   还记得吗，在还是种子的时候 我们相遇时你皱了皱眉头
+我害怕春天她无法承受阳光
+不能绽放成你期待的模样
+是风吗，在吹拂我的枝桠
+是你呀，说要守护我长大]]></description>
+</item><item>
     <title>Haskell 学习笔记四</title>
     <link>https://allen191819.xyz/haskell-3/</link>
     <pubDate>Fri, 04 Mar 2022 21:57:40 &#43;0800</pubDate>
@@ -69,12 +103,5 @@
     <author>Author</author>
     <guid>https://allen191819.xyz/uap/</guid>
     <description><![CDATA[<p>UAP 生成对抗样本实践(pytorch)</p>]]></description>
-</item><item>
-    <title>Github 对抗攻击库</title>
-    <link>https://allen191819.xyz/github%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E5%AF%B9%E6%8A%97%E6%94%BB%E5%87%BB%E5%BA%93_251021170759/</link>
-    <pubDate>Wed, 10 Nov 2021 21:57:40 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://allen191819.xyz/github%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E5%AF%B9%E6%8A%97%E6%94%BB%E5%87%BB%E5%BA%93_251021170759/</guid>
-    <description><![CDATA[<p>Github 中部分经典对抗攻击库整理</p>]]></description>
 </item></channel>
 </rss>
