@@ -2,9 +2,9 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://allen191819.xyz/ava/</loc><lastmod>2021-04-10T11:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://allen191819.xyz/ava/</loc><lastmod>2021-04-15T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/haskell-3/</loc><lastmod>2022-03-04T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://allen191819.xyz/haskell-2/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://allen191819.xyz/haskell-2/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>https://allen191819.xyz/haskell-1/</loc><lastmod>2022-03-03T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/haskell/</loc><lastmod>2020-03-02T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/latexsymbols/</loc><lastmod>2020-02-27T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -15,16 +15,16 @@
             <loc>https://allen191819.xyz/github%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BC%80%E6%BA%90%E5%AF%B9%E6%8A%97%E6%94%BB%E5%87%BB%E5%BA%93_251021170759/</loc><lastmod>2021-11-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/adversarialattacks_241021180957/</loc><lastmod>2021-11-10T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/adversarialattackmethod/</loc><lastmod>2021-12-01T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://allen191819.xyz/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://allen191819.xyz/tags/asoul/</loc><lastmod>2021-04-10T11:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://allen191819.xyz/tags/ava/</loc><lastmod>2021-04-10T11:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://allen191819.xyz/categories/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://allen191819.xyz/categories/entertainment/</loc><lastmod>2021-04-10T11:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://allen191819.xyz/posts/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://allen191819.xyz/tags/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://allen191819.xyz/tags/fp/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://allen191819.xyz/categories/haskell/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://allen191819.xyz/tags/lambda/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://allen191819.xyz/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://allen191819.xyz/tags/asoul/</loc><lastmod>2021-04-15T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://allen191819.xyz/tags/ava/</loc><lastmod>2021-04-15T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://allen191819.xyz/categories/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://allen191819.xyz/categories/entertainment/</loc><lastmod>2021-04-15T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://allen191819.xyz/posts/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://allen191819.xyz/tags/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://allen191819.xyz/tags/fp/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://allen191819.xyz/categories/haskell/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://allen191819.xyz/tags/lambda/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>https://allen191819.xyz/tags/cheetsheet/</loc><lastmod>2020-02-27T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/tags/latex/</loc><lastmod>2020-02-27T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/categories/latex/</loc><lastmod>2020-02-27T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
