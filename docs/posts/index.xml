@@ -4,7 +4,14 @@
         <link>https://allen191819.xyz/posts/</link>
         <description>All Posts | Allen</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>mzm191891@163.com (Allen191819)</managingEditor>
-            <webMaster>mzm191891@163.com (Allen191819)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 10 Apr 2022 09:57:40 &#43;0800</lastBuildDate><atom:link href="https://allen191819.xyz/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mzm191891@163.com (Allen191819)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 19 Apr 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://allen191819.xyz/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Docker 与 Vagrant 初探</title>
+    <link>https://allen191819.xyz/container/</link>
+    <pubDate>Tue, 19 Apr 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://allen191819.xyz/container/</guid>
+    <description><![CDATA[<p>初探 Docker 与 Vagrant 简记</p>]]></description>
+</item><item>
     <title>水母 水母 如此脆弱的生物</title>
     <link>https://allen191819.xyz/ava/</link>
     <pubDate>Sun, 10 Apr 2022 09:57:40 &#43;0800</pubDate>
@@ -67,12 +74,5 @@
     <author>Author</author>
     <guid>https://allen191819.xyz/backdoor/</guid>
     <description><![CDATA[<p>对于 Hidden trigger backdoor attack 的复现</p>]]></description>
-</item><item>
-    <title>UAP生成对抗样本(Universal adversarial perturbations)</title>
-    <link>https://allen191819.xyz/uap/</link>
-    <pubDate>Fri, 12 Nov 2021 21:57:40 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://allen191819.xyz/uap/</guid>
-    <description><![CDATA[<p>UAP 生成对抗样本实践(pytorch)</p>]]></description>
 </item></channel>
 </rss>

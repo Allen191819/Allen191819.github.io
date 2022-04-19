@@ -7,12 +7,9 @@ draft: false
 author: "Allen191819"
 authorLink: "https://allen191819.xyz"
 description: "Ava 向晚"
-
 tags: ["Asoul", "Ava"]
 categories: ["Entertainment"]
-
 lightgallery: true
-
 math:
     enable: true
 resources:
