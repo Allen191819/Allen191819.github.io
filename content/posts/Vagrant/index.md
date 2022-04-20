@@ -334,5 +334,5 @@ vagrant snapshot go "centos-7.1_base"
 删除快照
 
 ```
-vagrant snapshot delete "Name"
+vagrant snapshot delete "centos-7.1_base"
 ```
