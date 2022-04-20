@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Vagrant - Allen</title><meta name="Description" content="Vagrant 基础使用"><meta property="og:title" content="Vagrant" />
+<meta property="og:description" content="Vagrant 基础使用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://allen191819.xyz/vagrant/" /><meta property="og:image" content="https://allen191819.xyz/vagrant/featured-image.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-20T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://allen191819.xyz/vagrant/featured-image.png"/>
+<meta name="twitter:title" content="Vagrant"/>
+<meta name="twitter:description" content="Vagrant 基础使用"/>
+<meta name="application-name" content="Allen">
+<meta name="apple-mobile-web-app-title" content="Allen"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://allen191819.xyz/vagrant/" /><link rel="prev" href="https://allen191819.xyz/container/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Vagrant",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/allen191819.xyz\/vagrant\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/allen191819.xyz\/vagrant\/featured-image.png",
+                            "width":  750 ,
+                            "height":  206 
+                        }],"genre": "posts","keywords": "Container \u0026 Virtualization","wordcount":  643 ,
+        "url": "https:\/\/allen191819.xyz\/vagrant\/","datePublished": "2022-04-20T00:00:00+00:00","dateModified": "2022-04-20T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Allen191819","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/allen191819.xyz\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Allen191819"
+            },"description": "Vagrant 基础使用"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Vagrant</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://allen191819.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Allen191819</a></span>&nbsp;<span class="post-category">included in <a href="/categories/os/"><i class="far fa-folder fa-fw"></i>OS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-20">2022-04-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;643 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;<span id="/vagrant/" class="leancloud_visitors" data-flag-title="Vagrant">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/vagrant/featured-image.png"
+        data-srcset="/vagrant/featured-image.png, /vagrant/featured-image.png 1.5x, /vagrant/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/vagrant/featured-image.png"
+        title="Vagrant 基础使用" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#vagrant-优势">Vagrant 优势</a></li>
+    <li><a href="#使用-vagrant-部署环境">使用 Vagrant 部署环境</a>
+      <ul>
+        <li><a href="#get-started">Get Started</a></li>
+        <li><a href="#vagrantfile">Vagrantfile</a></li>
+        <li><a href="#box">Box</a></li>
+        <li><a href="#修改-synced-目录">修改 synced 目录</a></li>
+      </ul>
+    </li>
+    <li><a href="#vagrant-package">Vagrant Package</a>
+      <ul>
+        <li><a href="#简单的打包">简单的打包</a></li>
+        <li><a href="#参数">参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#vagrant--libvirt">Vagrant ❤️ Libvirt</a>
+      <ul>
+        <li><a href="#安装-vagrant-plugins">安装 Vagrant Plugins</a></li>
+        <li><a href="#使用-vagrant-libvirt-安装-ubuntu2004">使用 vagrant-libvirt 安装 Ubuntu20.04</a></li>
+      </ul>
+    </li>
+    <li><a href="#vagrant-box-管理">Vagrant Box 管理</a>
+      <ul>
+        <li><a href="#探索-boxes">探索 Boxes</a></li>
+        <li><a href="#快速复制-vagrant-box">快速复制 Vagrant Box</a></li>
+        <li><a href="#删除-box">删除 box</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-vagrant-snapshot-创建快照备份">使用 vagrant Snapshot 创建快照备份</a>
+      <ul>
+        <li><a href="#使用方法">使用方法：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>使用 Vagrant 搭建开发测试环境</p>
+<h1 id="vagrant">Vagrant</h1>
+<p>Vagrant 基于工业标准化技术至上提供了易于配置，可重复部署以及可移植的工作环境，并且通过一个简单的一致性的工作流提供控制来帮助你和你的团队最大化生产力和可伸缩性。</p>
+<p>为了实现这个奇迹，Vagrant 站在了巨人的肩膀之上。主机由 VirtualBox，VMware，AWS 或其他 provider 提供。然后，工业标准化的供给工具，例如 shell 脚本，Chef 或 Puppet，可以提供自动化安装和配置主机中的软件。</p>
+<h2 id="vagrant-优势">Vagrant 优势</h2>
+<p>对于开发者而言，Vagrant 隔离了依赖和它们的配置到一个单一的一次性的，一致性的环境，不需要担忧任何使用的工具。一旦你或者其他人创建了一个 Vagrant 文件，你只需要使用 vagrant up 然后，所有软件被安装和配置。其他团队成员也适用相同的配置文件创建他们的环境，无论你们是工作在 Linux， Mac OS X 或 Windows 。所有团队成员在相同环境中运行代码，基于相同的依赖。</p>
+<h2 id="使用-vagrant-部署环境">使用 Vagrant 部署环境</h2>
+<h3 id="get-started">Get Started</h3>
+<ul>
+<li>安装 <code>vagrant</code> ，对于 <code>archlinux</code> 可以使用 <code>pacman</code> 直接安装 <code>vagrant</code> 和 <code>virtualbox</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ sudo pacman -S vagrant virtualbox
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于其他发行版，可以自行到官网下载安装：</p>
+<ul>
+<li><a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener noreffer">VirtualBox</a></li>
+<li><a href="https://www.vagrantup.com/downloads.html" target="_blank" rel="noopener noreffer">Vagrant</a></li>
+</ul>
+<ul>
+<li>创建一个虚拟机：</li>
+</ul>
+<p>首先，到 <a href="https://app.vagrantup.com/boxes/search" target="_blank" rel="noopener noreffer">Vagrant Cloud</a> 找到需要安装的虚拟机，注意选择 <code>virtualbox</code> 格式的 box。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ mkdir ~/Vagrant/ubuntu2004
+</span></span><span class="line"><span class="cl">$ cd ~/Vagrant/ubuntu2004
+</span></span><span class="line"><span class="cl">$ vagrant init generic/ubuntu2004
+</span></span><span class="line"><span class="cl">$ vagrant up
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>虚拟机搭建完成后，通过<code>vagrant ssh</code> 即可进行连接。</p>
+<blockquote>
+<ul>
+<li><strong>Notice</strong>：对于 <code>kitty terminal</code> ，需要使用 <code>TERM=xterm-256color vagrant ssh</code>，问题具体描述，参见：<a href="https://www.reddit.com/r/KittyTerminal/comments/mgd2f0/vagrant_ssh/" target="_blank" rel="noopener noreffer">reddit</a></li>
+</ul>
+</blockquote>
+<h3 id="vagrantfile">Vagrantfile</h3>
+<p><a href="https://www.vagrantup.com/docs/vagrantfile" target="_blank" rel="noopener noreffer">Vagrantfile</a></p>
+<p>配置任何 Vagrant 项目的第一步是创建一个 Vagrantfile。这个 Vagrantfile 两个作用：</p>
+<ul>
+<li>标记项目的根目录，一些 Vagrant 配置归属到这个根目录中</li>
+<li>描述主机类型和需要运行项目的资源，例如软件安装以及如何访问它</li>
+</ul>
+<p>Vagrant 有一个内建命令来初始化目录 <code>vagrant init</code> 。这个命令将 Vagrantfile 放到当前目录，可以查看这个文件（包含了很多注释和例子）。也可以在已经存在的目录执行 <code>vagrant init</code> 来设置 Vagrant。</p>
+<blockquote>
+<ul>
+<li>Vagrantfile 实际是使用 <a href="http://www.ruby-lang.org/" target="_blank" rel="noopener noreffer">Ruby</a> 语法，但如果不熟悉 <code>Ruby</code>，也无伤大雅，没有必要为此学习 <code>Ruby</code>。</li>
+</ul>
+</blockquote>
+<h3 id="box">Box</h3>
+<p>Vagrant 使用一个基础镜像来 clone 虚拟机，这个基础镜像称为 boxes。</p>
+<h3 id="修改-synced-目录">修改 synced 目录</h3>
+<p>可以通过修改 Vagrantfile 配置来实现对默认共享目录位置的修改，例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">synced_folder</span> <span class="s2">&#34;/Users/huatai/Documents/Vagrant/sharedata&#34;</span><span class="p">,</span> <span class="s2">&#34;/sharedata&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以用来在不同的虚拟机之间使用共享目录，这样方便部署一个简单的共享集群。即，在物理服务器上构建一个共享给多个虚拟机使用的网络存储（不需要单独部署 NFS 或者 CIFS），方便构建测试集群。</p>
+<h2 id="vagrant-package">Vagrant Package</h2>
+<p>可以使用 <code>vagrant package</code> 是一个将当前的虚拟环境打包成一个可以重用的 <a href="http://docs.vagrantup.com/v2/boxes.html" target="_blank" rel="noopener noreffer">box</a> ，但 <code>vagrant package</code> 不能用于其他的<code>provider</code>。</p>
+<h3 id="简单的打包">简单的打包</h3>
+<p>进入 Vagrant 项目目录，执行简单的命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant package
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="参数">参数</h3>
+<ul>
+<li>
+<p><code>--base NAME</code> - 替代打包一个 VirtualBox 主机，这个参数打包一个 VirtualBox manages 的 VirtualBox。这里 NAME 是 VirtualBox GUI 中显示的虚拟机的 UUID 或者名字。</p>
+</li>
+<li>
+<p><code>--output NAME</code> - 这个参数设置打包的名字，如果没有这个参数，则默认保存为 package.box</p>
+</li>
+<li>
+<p><code>--include x,y,z</code> - 附加一些文件到 box 中，这是让打包 Vagrantfile 执行附加任务</p>
+</li>
+<li>
+<p><code>--vagrantfile FILE</code> - 打包一个 Vagrantfile 到 box 中，这个 Vagrantfile 将作为 box 使用的 Vagrantfile load</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">vagrant</span> <span class="kn">package</span> <span class="o">--</span><span class="nx">base</span> <span class="nx">ubuntu2004</span> <span class="o">--</span><span class="nx">output</span> <span class="nx">ubuntu2004</span><span class="p">.</span><span class="nx">box</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="vagrant--libvirt">Vagrant ❤️ Libvirt</h2>
+<p>Vagrant 非常适合支持桌面级虚拟化 VirtualBox，不过在生产环境中，通常会部署 KVM 或 Xen 环境。Vagrant 通过 libvirt 支持不同的虚拟化环境，同样也包括了 KVM／Qemu。Vagrant 提供了易于部署和管理的包装，以便快速部署和方便管理 VM。</p>
+<p>该部分是在已搭建好 KVM 的基础上进行的，KVM 搭建过程具体参考：<a href="https://huataihuang.gitbooks.io/cloud-atlas/content/virtual/kvm/deployment_and_administration/deploy_kvm_on_centos" target="_blank" rel="noopener noreffer">在 CentOS 7 中部署 KVM</a></p>
+<h3 id="安装-vagrant-plugins">安装 Vagrant Plugins</h3>
+<ul>
+<li><code>vagrant-libvirt</code> 该插件用于支持 libvirt</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant plugin install vagrant-libvirt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<ul>
+<li>这需要你事先安装好 <code>libvirt-devel</code>,否则会报错。</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>vagrant-mutate</code> 插件将官方的 Vagrant guest box 转换成 KVM 格式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant plugin install vagrant-mutate
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>vagrant-rekey-ssh</code> - 由于官方的 Vagrant boxes 使用了内建的非安全的 SSH key，所以我们可以使用<code>vagrant-rekey-ssh</code>插件来重新生成新的 SSH key</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant plugin install vagrant-rekey-ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-vagrant-libvirt-安装-ubuntu2004">使用 vagrant-libvirt 安装 Ubuntu20.04</h3>
+<ul>
+<li>初始化 ubuntu2004 box (<a href="https://app.vagrantup.com/generic/boxes/ubuntu2004" target="_blank" rel="noopener noreffer">ubuntu2004</a>)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant init generic/ubuntu2004
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>Vagrant</code>会尝试使用一个名为<code>default</code>的存储池，如果这个<code>default</code>存储池不存在就会尝试在<code>/var/lib/libvirt/images</code>上创建这个<code>defualt</code>存储池。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Vagrant.configure(&#34;2&#34;) do |config|
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">  config.vm.provider :libvirt do |libvirt|
+</span></span><span class="line"><span class="cl">    libvirt.storage_pool_name = &#34;default&#34;
+</span></span><span class="line"><span class="cl">  end
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">end
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>如果希望默认使用 <code>vagrant</code> 作为 <code>provider</code> 需要设置相应的环境变量</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">export VAGRANT_DEFAULT_PROVIDER=libvirt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>启动安装</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant up
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>也可以在安装时指定<code>provider</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant up --provider libvirt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查看系统的储存池</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">virsh pool-list --all
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> Name                 State      Autostart
+</span></span><span class="line"><span class="cl">-------------------------------------------
+</span></span><span class="line"><span class="cl"> huatai               active     yes
+</span></span><span class="line"><span class="cl"> images               active     yes
+</span></span><span class="line"><span class="cl"> root                 active     yes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<ul>
+<li>一些故障，请参考：<a href="https://huataihuang.gitbooks.io/cloud-atlas/content/virtual/vagrant/vagrant_libvirt_kvm.html" target="_blank" rel="noopener noreffer">使用 Vagrant 部署 kvm 虚拟化(libVirt)</a></li>
+</ul>
+</blockquote>
+<h2 id="vagrant-box-管理">Vagrant Box 管理</h2>
+<p>Boxes 是 Vagrant 环境的打包格式。一个 box 可以被任何 Vagrant 所支持的平台的任何人用于启动一个独立工作的环境。</p>
+<p><code>vagrant box</code> 工具提供了所有的管理 boxes 的功能。</p>
+<h3 id="探索-boxes">探索 Boxes</h3>
+<p>在 public Vagrant box catalog 上提供了支持各种虚拟化，如 VirtualBox，VMware，AWS 等。简单添加到本机的命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant box add username/boxname
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="快速复制-vagrant-box">快速复制 Vagrant Box</h3>
+<p>当需要复制出 Vagrant box 时，简单的方法如下：</p>
+<ul>
+<li>关闭 box (如果 box 正在运行的话)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant halt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>将环境打包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">vagrant</span> <span class="kn">package</span> <span class="o">--</span><span class="nx">output</span> <span class="nx">ubuntu2004</span><span class="p">.</span><span class="nx">box</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>创建新的 box 文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkdir devstack
+</span></span><span class="line"><span class="cl">cd devstack
+</span></span><span class="line"><span class="cl">vagrant init
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>编辑 <code>vagrantfile</code> ,修改如下内容：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&#34;ubuntu2004&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_url</span> <span class="o">=</span> <span class="s2">&#34;file:///home/allen/Workplace/eBPF/vagrant/ubuntu2004.box&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&#34;private_network&#34;</span><span class="p">,</span> <span class="ss">ip</span><span class="p">:</span> <span class="s2">&#34;192.168.33.101&#34;</span> <span class="c1"># 可选</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<ul>
+<li>这里的 <code>vagrant init</code>，命令可以改成 <code>vagrant box add ubuntu2004 /home/allen/Workplace/eBPF/vagrant/ubuntu2004.box libvirt</code> 这样就不需要再修改 Vagrantfile 此时只需要直接运行下一步 vagrant up 就可以了。</li>
+</ul>
+</blockquote>
+<ul>
+<li>运行 Vagrant box</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant up
+</span></span><span class="line"><span class="cl">vagrant ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="删除-box">删除 box</h3>
+<p>进入相应目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd devstack
+</span></span><span class="line"><span class="cl">vagrant destroy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行后将从 VirtualBox 中删除掉虚拟机配置以及虚拟机相关的虚拟磁盘，真正释放空间。</p>
+<p>然后执行 <code>vagrant box remove devstack</code> 将 Vagrant 对应的 devstack 配置清理掉。</p>
+<h2 id="使用-vagrant-snapshot-创建快照备份">使用 vagrant Snapshot 创建快照备份</h2>
+<p>使用 Vagrant 的快照功能可以很方便快速的创建当前虚拟机的一个临时备份状态，在进行重要操作时可以先创建一个快照以便在操作失误后快速恢复。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant plugin install vagrant-snapshot
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>支持的参数如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant snapshot take [vm-name] &lt;SNAPSHOT_NAME&gt;   # take snapshot, labeled by NAME
+</span></span><span class="line"><span class="cl">vagrant snapshot list [vm-name]                   # list snapshots
+</span></span><span class="line"><span class="cl">vagrant snapshot back [vm-name]                   # restore last taken snapshot
+</span></span><span class="line"><span class="cl">vagrant snapshot delete [vm-name] &lt;SNAPSHOT_NAME&gt; # delete specified snapshot
+</span></span><span class="line"><span class="cl">vagrant snapshot go [vm-name] &lt;SNAPSHOT_NAME&gt;     # restore specified snapshot
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用方法">使用方法：</h3>
+<p>创建一个快照</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant snapshot take centos-7.1 centos-7.1_base
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当前目录是 Vagrant 配置文件所在目录 <code>centos-7.1</code> ，我以为虚拟机的名字是 <code>centos-7.1</code> （不过看 VirtualBox 的图形管理界面中显示的是 Vagrant_default_1448250085458_10997），但是实际上述命令执行会提示错误</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">The machine with the name &#39;centos-7.1&#39; was not found configured for this Vagrant environment.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么真正的名字是什么呢？使用<code>vagrant status</code> 可以查看当前虚拟机的信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Current machine states:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">default                   poweroff (virtualbox)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">The VM is powered off. To restart the VM, simply run `vagrant up`
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原来名字是<code>defualt</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant snapshot take default centos-7.1_base
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看快照列表：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant snapshot list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Listing snapshots for &#39;default&#39;:
+</span></span><span class="line"><span class="cl">   Name: centos-7.1_base (UUID: af5b803c-266e-41af-875b-9f7a2bc36794) *
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>回滚到快照：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant snapshot go &#34;centos-7.1_base&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删除快照</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vagrant snapshot delete &#34;Name&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-04-20</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/vagrant/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://allen191819.xyz/vagrant/" data-title="Vagrant" data-hashtags="Container & Virtualization"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://allen191819.xyz/vagrant/" data-hashtag="Container &amp; Virtualization"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://allen191819.xyz/vagrant/" data-title="Vagrant"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://allen191819.xyz/vagrant/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://allen191819.xyz/vagrant/" data-title="Vagrant"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="https://allen191819.xyz/vagrant/" data-title="Vagrant"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/container-virtualization/">Container &amp; Virtualization</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/container/" class="prev" rel="prev" title="Docker 与 Vagrant 初探"><i class="fas fa-angle-left fa-fw"></i>Docker 与 Vagrant 初探</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://allen191819.xyz/" target="_blank">Allen191819</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">陕ICP备2022000578号-1</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"dh3RTojhq3nlJOKjVBj7IjDE-gzGzoHsz","appKey":"PAT7jDcg2ByGXNmiigwBrIoH","avatar":"identicon","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":true,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"data":{"id-1":"Allen's Blog","id-2":"Allen's Blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
