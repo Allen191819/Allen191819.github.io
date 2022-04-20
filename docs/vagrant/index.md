@@ -67,7 +67,7 @@ Vagrant 使用一个基础镜像来 clone 虚拟机，这个基础镜像称为 b
 可以通过修改 Vagrantfile 配置来实现对默认共享目录位置的修改，例如
 
 ```ruby
-config.vm.synced_folder "/Users/huatai/Documents/Vagrant/sharedata", "/sharedata"
+config.vm.synced_folder "/home/allen/Workplace/eBPF/Vagrant/allen", "/allen"
 ```
 
 可以用来在不同的虚拟机之间使用共享目录，这样方便部署一个简单的共享集群。即，在物理服务器上构建一个共享给多个虚拟机使用的网络存储（不需要单独部署 NFS 或者 CIFS），方便构建测试集群。
