@@ -11,10 +11,10 @@ tags: ["Container & Virtualization"]
 categories: ["OS"]
 lightgallery: true
 math:
-    enable: false
+  enable: false
 resources:
-    - name: featured-image
-      src: featured-image.jpg
+  - name: featured-image
+    src: featured-image.jpg
 ---
 
 ---
@@ -37,17 +37,17 @@ Linux Container 容器技术的诞生（2008 年）就解决了 IT 世界里“�
 
 每个运行的容器都有自己的名称空间。这是 Linux 操作系统默认提供的 API，包括：
 
--   **PID Namespace**：不同容器就是通过 pid 名字空间隔离开的，不同名字空间中可以有相同的 pid。
+- **PID Namespace**：不同容器就是通过 pid 名字空间隔离开的，不同名字空间中可以有相同的 pid。
 
--   **Mount Namespace**：mount 允许不同名称空间的进程看到的文件结构不同，因此不同名称空间中的进程所看到的文件目录就被隔离了。另外，每个名称空间中的容器在/proc/mounts 的信息只包含当前名称的挂载点。
+- **Mount Namespace**：mount 允许不同名称空间的进程看到的文件结构不同，因此不同名称空间中的进程所看到的文件目录就被隔离了。另外，每个名称空间中的容器在/proc/mounts 的信息只包含当前名称的挂载点。
 
--   **IPC Namespace**：容器中进程交互还是采用 Linux 常见的进程交互方法（interprocess communication -IPC），包括信号量、消息队列和共享内存等。
+- **IPC Namespace**：容器中进程交互还是采用 Linux 常见的进程交互方法（interprocess communication -IPC），包括信号量、消息队列和共享内存等。
 
--   **Network Namespace**：网络隔离是通过 Net 实现，每个 Net 有独立的网络设备，IP 地址，路由表，/proc/net 目录。这样每个容器的网络就能隔离开来。
+- **Network Namespace**：网络隔离是通过 Net 实现，每个 Net 有独立的网络设备，IP 地址，路由表，/proc/net 目录。这样每个容器的网络就能隔离开来。
 
--   **UTS Namespace**：UTS（UNIX Time-sharing System）允许每个容器拥有独立的 hostname 和 domain name，使其在网络上可以被视作一个独立的节点而非主机上的一个进程。
+- **UTS Namespace**：UTS（UNIX Time-sharing System）允许每个容器拥有独立的 hostname 和 domain name，使其在网络上可以被视作一个独立的节点而非主机上的一个进程。
 
--   **User Namespace**：每个容器可以有不同的用户和组 id，也就是说可以在容器内用容器内部的用户执行程序而非主机上的用户。
+- **User Namespace**：每个容器可以有不同的用户和组 id，也就是说可以在容器内用容器内部的用户执行程序而非主机上的用户。
 
 ### 控制组(Control groups)
 
@@ -81,10 +81,10 @@ Docker 是一个开源的应用容器引擎，让开发者可以打包他们的�
 
 在 Docker 体系里，有四个对象 ( Object ) 是不得不进行介绍的，因为几乎所有 Docker 以及周边生态的功能，都是围绕着它们所展开的。它们分别是：
 
--   镜像 ( Image )
--   容器 ( Container )
--   网络 ( Network )
--   数据卷 ( Volume )
+- 镜像 ( Image )
+- 容器 ( Container )
+- 网络 ( Network )
+- 数据卷 ( Volume )
 
 #### Image
 
@@ -102,11 +102,11 @@ Docker 的镜像实质上是无法被修改的，因为所有对镜像的修改�
 
 根据官方的定义，一个 Docker 容器应该包括一下三项内容：
 
--   一个 Docker 镜像
--   一个程序的运行环境
--   一个指令集合
+- 一个 Docker 镜像
+- 一个程序的运行环境
+- 一个指令集合
 
-#### 网络
+#### Network
 
 网络通讯作为目前最常用的一种程序间的数据交换方式。 Docker 中，实现了强大的网络功能，我们不但能够十分轻松的对每个容器的网络进行配置，还能在容器间建立虚拟网络，将数个容器包裹其中，同时与其他网络环境隔离。
 
@@ -128,9 +128,9 @@ Vagrant 是一个虚拟机管理软件，可以自动化虚拟机的安装和配
 
 ### Vagrant 的优点
 
--   跨平台
--   可移动
--   自动化部署无需人工参与等
+- 跨平台
+- 可移动
+- 自动化部署无需人工参与等
 
 ### Vagrant 的相关概念
 
@@ -151,3 +151,9 @@ vagrantfile 是一个配置文件。每一个 vagrantfile 对应一个 box 镜�
 首先，相似之处是 Vagrant 和 Docker 都是虚拟化技术。Vagrant 是基于 Virtualbox 的虚拟机来构建你的开发环境，而 Docker 则是基于 LXC(LXC)轻量级容器虚拟技术。全面理解这两种虚拟技术的区别，需要阅读很多文档。我这里打个简单的比方，虚拟机之于容器虚拟技术相当于进程和线程。虚拟机内可以包含很多容器，正如一个进程中可以包含很多线程。虚拟机重，容器虚拟技术轻。
 
 前者的 Image 一般以 GB 计算，Docker 则以 100MB 为单位计算。当然，提问者肯定更希望从应用层面来了解两者的区别。简单点讲，Vagrant 就是你的开发环境的部署工具；而 docker 是你的运行环境部署工具。
+
+个人感觉 Vagrant 和 Docker 类似，通过组合底层开源技术加上自己开发的程序/脚本以及良好定义的规则，实现了标准化的快速部署虚拟系统的架构。所不同的是，Docker 采用的是轻量级的容器技术，Vagrant 则使用 kvm/virtualbox 等重量级的全/半虚拟化平台。
+
+Vagrant 实现的是根据模版快速提供虚拟系统，大规模生产虚拟系统，需要结合进一步定制的管理控制平台来实现 PaaS。
+
+Vagrant 更适合部署完全虚拟化集群，可以实现更为复杂的系统模拟，在特定的需要安全性隔离环境以及需要实现完整的操作系统功能的虚拟系统。
