@@ -257,7 +257,7 @@ f x， 再用参数 y 调用它。</p>
 </div>
 </div><h3 id="function-application">Function application</h3>
 <p>函数应用可以使用<code>$</code>，<code>$</code>是一个函数，它的类型是：</p>
-<p>$$($) :: (a \to b) \to a \to b$$</p>
+<p>$$(\$) :: (a \to b) \to a \to b$$</p>
 <p>它可以改变函数结合优先级，将左侧函数应用于全部右侧内容上，相当于给右侧整体加上了括号。否则函数默认左结合，会依次向右应用而不会应用在整体上。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -283,9 +283,7 @@ f x， 再用参数 y 调用它。</p>
 <p>函数复合可以使用<code>.</code>，<code>.</code>也是一个函数，它的类型是：</p>
 <p>$$(.) :: (b \to c) \to (a \to b) \to a \to c$$</p>
 <p>定义是：</p>
-<p>$$
-f . g = \x \to f (g x)
-$$</p>
+<p>$$ f . g = x \to f (g x) $$</p>
 <p>但是函数复合的优先级要比函数执行低，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
