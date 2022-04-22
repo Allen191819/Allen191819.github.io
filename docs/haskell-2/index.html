@@ -33,7 +33,7 @@
                             "url": "https:\/\/allen191819.xyz\/haskell-2\/featured-image.png",
                             "width":  1129 ,
                             "height":  717 
-                        }],"genre": "posts","keywords": "Lambda, FP","wordcount":  899 ,
+                        }],"genre": "posts","keywords": "Lambda, FP","wordcount":  1413 ,
         "url": "https:\/\/allen191819.xyz\/haskell-2\/","datePublished": "2022-03-03T21:57:40+08:00","dateModified": "2022-03-14T16:45:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Allen191819","logo": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Haskell 学习笔记三</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://allen191819.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Allen191819</a></span>&nbsp;<span class="post-category">included in <a href="/categories/haskell/"><i class="far fa-folder fa-fw"></i>Haskell</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-03">2022-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;899 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;<span id="/haskell-2/" class="leancloud_visitors" data-flag-title="Haskell 学习笔记三">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-03">2022-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1413 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;<span id="/haskell-2/" class="leancloud_visitors" data-flag-title="Haskell 学习笔记三">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="featured-image"><img
@@ -158,6 +158,7 @@
         <li><a href="#定义新的-typeclass">定义新的 Typeclass</a>
           <ul>
             <li><a href="#创建实例">创建实例</a></li>
+            <li><a href="#mylist">Mylist</a></li>
             <li><a href="#functor-typeclass">Functor Typeclass</a></li>
           </ul>
         </li>
@@ -602,6 +603,184 @@
 </span></span><span class="line"><span class="cl">    <span class="kr">_</span> <span class="o">==</span> <span class="kr">_</span> <span class="ow">=</span> <span class="kt">False</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><p>我们使用 haskell 定义一个我们自己的 list :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">MyList</span> <span class="n">t</span> <span class="ow">=</span> <span class="kt">EmptyList</span> <span class="o">|</span> <span class="kt">ListNode</span> <span class="n">t</span> <span class="p">(</span><span class="kt">MyList</span> <span class="n">t</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>官方的 Haskell 列表定义是这样的：<code>data [] a = [] | a : [a]</code></p>
+</blockquote>
+<figure><img src="list.png"/>
+</figure>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="nf">sum</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">MyList</span> <span class="kt">Integer</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">Integer</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="n">rest</span><span class="p">)</span> <span class="ow">=</span> <span class="n">first</span> <span class="o">+</span> <span class="p">(</span><span class="n">sum</span> <span class="n">rest</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">MyList</span> <span class="n">t</span> <span class="ow">=</span> <span class="kt">EmptyList</span> <span class="o">|</span> <span class="kt">ListNode</span> <span class="n">t</span> <span class="p">(</span><span class="kt">MyList</span> <span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">appendRight</span> <span class="ow">::</span> <span class="kt">MyList</span> <span class="n">t</span> <span class="ow">-&gt;</span> <span class="n">t</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl"><span class="nf">appendRight</span> <span class="kt">EmptyList</span> <span class="n">element</span> <span class="ow">=</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">element</span> <span class="kt">EmptyList</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">appendRight</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="n">rest</span><span class="p">)</span> <span class="n">element</span> <span class="ow">=</span> <span class="kt">ListNode</span> <span class="n">first</span> <span class="p">(</span><span class="n">appendRight</span> <span class="n">rest</span> <span class="n">element</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="mylist">Mylist</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-haskell" data-lang="haskell"><span class="line"><span class="cl"><span class="kr">data</span> <span class="kt">MyList</span> <span class="n">t</span> <span class="ow">=</span> <span class="kt">EmptyList</span> <span class="o">|</span> <span class="kt">ListNode</span> <span class="n">t</span> <span class="p">(</span><span class="kt">MyList</span> <span class="n">t</span><span class="p">)</span> <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Show</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">listt</span> <span class="ow">=</span> <span class="kt">ListNode</span> <span class="mi">7</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="mi">3</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="mi">5</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="mi">8</span> <span class="kt">EmptyList</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">isEmpty</span> <span class="ow">::</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
+</span></span><span class="line"><span class="cl"><span class="nf">isEmpty</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="kt">True</span>
+</span></span><span class="line"><span class="cl"><span class="nf">isEmpty</span> <span class="kr">_</span> <span class="ow">=</span> <span class="kt">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">take&#39;&#39;</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">take&#39;&#39;</span> <span class="n">n</span> <span class="kr">_</span>
+</span></span><span class="line"><span class="cl">  <span class="o">|</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">=</span> <span class="kt">EmptyList</span>
+</span></span><span class="line"><span class="cl"><span class="nf">take&#39;&#39;</span> <span class="kr">_</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="kt">EmptyList</span>
+</span></span><span class="line"><span class="cl"><span class="nf">take&#39;&#39;</span> <span class="n">n</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="n">rest</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">ListNode</span> <span class="n">first</span> <span class="p">(</span><span class="n">take&#39;&#39;</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">rest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">repeat&#39;</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">repeat&#39;</span> <span class="n">x</span> <span class="ow">=</span> <span class="kt">ListNode</span> <span class="n">x</span> <span class="p">(</span><span class="n">repeat&#39;</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">sum&#39;</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Num</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum&#39;</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sum&#39;</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="n">rest</span><span class="p">)</span> <span class="ow">=</span> <span class="n">first</span> <span class="o">+</span> <span class="n">sum&#39;</span> <span class="n">rest</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">product&#39;</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Num</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">product&#39;</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">product&#39;</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="n">rest</span><span class="p">)</span> <span class="ow">=</span> <span class="n">first</span> <span class="o">*</span> <span class="n">product&#39;</span> <span class="n">rest</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">appendRight</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">appendRight</span> <span class="n">element</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="kt">ListNode</span> <span class="n">element</span> <span class="kt">EmptyList</span>
+</span></span><span class="line"><span class="cl"><span class="nf">appendRight</span> <span class="n">element</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="n">rest</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">ListNode</span> <span class="n">first</span> <span class="p">(</span><span class="n">appendRight</span> <span class="n">element</span> <span class="n">rest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">appendLeft</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">appendLeft</span> <span class="ow">=</span> <span class="kt">ListNode</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">filter&#39;&#39;</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">filter&#39;&#39;</span> <span class="kr">_</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="kt">EmptyList</span>
+</span></span><span class="line"><span class="cl"><span class="nf">filter&#39;&#39;</span> <span class="n">judge</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="n">rest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">|</span> <span class="n">judge</span> <span class="n">first</span> <span class="ow">=</span> <span class="kt">ListNode</span> <span class="n">first</span> <span class="p">(</span><span class="n">filter&#39;&#39;</span> <span class="n">judge</span> <span class="n">rest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">|</span> <span class="n">otherwise</span> <span class="ow">=</span> <span class="n">filter&#39;&#39;</span> <span class="n">judge</span> <span class="n">rest</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">zipWith&#39;&#39;</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">zipWith&#39;&#39;</span> <span class="kr">_</span> <span class="kt">EmptyList</span> <span class="kr">_</span> <span class="ow">=</span> <span class="kt">EmptyList</span>
+</span></span><span class="line"><span class="cl"><span class="nf">zipWith&#39;&#39;</span> <span class="kr">_</span> <span class="kr">_</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="kt">EmptyList</span>
+</span></span><span class="line"><span class="cl"><span class="nf">zipWith&#39;&#39;</span> <span class="n">func</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first1</span> <span class="n">rest1</span><span class="p">)</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first2</span> <span class="n">rest2</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">ListNode</span> <span class="p">(</span><span class="n">func</span> <span class="n">first1</span> <span class="n">first2</span><span class="p">)</span> <span class="p">(</span><span class="n">zipWith&#39;&#39;</span> <span class="n">func</span> <span class="n">rest1</span> <span class="n">rest2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">addList</span> <span class="ow">::</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">addList</span> <span class="n">l</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="n">l</span>
+</span></span><span class="line"><span class="cl"><span class="nf">addList</span> <span class="kt">EmptyList</span> <span class="n">l</span> <span class="ow">=</span> <span class="n">l</span>
+</span></span><span class="line"><span class="cl"><span class="nf">addList</span> <span class="n">l1</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="n">rest</span><span class="p">)</span> <span class="ow">=</span> <span class="n">addList</span> <span class="p">(</span><span class="n">appendRight</span> <span class="n">first</span> <span class="n">l1</span><span class="p">)</span> <span class="n">rest</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">quickSort</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Ord</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="kt">MyList</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="nf">quickSort</span> <span class="kt">EmptyList</span> <span class="ow">=</span> <span class="kt">EmptyList</span>
+</span></span><span class="line"><span class="cl"><span class="nf">quickSort</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="n">rest</span><span class="p">)</span> <span class="ow">=</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">let</span> <span class="n">small</span> <span class="ow">=</span> <span class="n">quickSort</span> <span class="p">(</span><span class="n">filter&#39;&#39;</span> <span class="p">(</span><span class="o">&lt;=</span> <span class="n">first</span><span class="p">)</span> <span class="n">rest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">big</span> <span class="ow">=</span> <span class="n">quickSort</span> <span class="p">(</span><span class="n">filter&#39;&#39;</span> <span class="p">(</span><span class="o">&gt;</span> <span class="n">first</span><span class="p">)</span> <span class="n">rest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="kr">in</span> <span class="n">small</span> <span class="p">`</span><span class="n">addList</span><span class="p">`</span> <span class="p">(</span><span class="kt">ListNode</span> <span class="n">first</span> <span class="kt">EmptyList</span><span class="p">)</span> <span class="p">`</span><span class="n">addList</span><span class="p">`</span> <span class="n">big</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">createList</span> <span class="ow">::</span> <span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">MyList</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl"><span class="nf">createList</span> <span class="kt">[]</span> <span class="ow">=</span> <span class="kt">EmptyList</span>
+</span></span><span class="line"><span class="cl"><span class="nf">createList</span> <span class="p">(</span><span class="n">x</span> <span class="kt">:</span> <span class="n">xs</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">ListNode</span> <span class="n">x</span> <span class="o">$</span> <span class="n">createList</span> <span class="n">xs</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">list1</span> <span class="ow">=</span> <span class="n">createList</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">print</span> <span class="n">list1</span>
+</span></span><span class="line"><span class="cl">  <span class="n">print</span> <span class="o">$</span> <span class="n">quickSort</span> <span class="n">list1</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h4 id="functor-typeclass">Functor Typeclass</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -638,7 +817,7 @@
 </span></span><span class="line"><span class="cl"><span class="kt">Either</span> <span class="ow">::</span> <span class="o">*</span> <span class="ow">-&gt;</span> <span class="o">*</span> <span class="ow">-&gt;</span> <span class="o">*</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>其中的星号 * 代表了一个具体类型（concrete type）。Int 本身就是一个具体类型，所以 Int 的 Kind 是 *。而 Maybe 是一个类型构造器，它接收一个具体类型返回一个新的具体类型，所以 Maybe 的 Kind 是 * $\to$ *。如果给 Maybe 传入了一个 Int，那么得到的 Maybe Int 就是一个具体的类型，它的 Kind 就是 *。Either 也是一个类型构造器，但它接收两个类型才产生一个新的类型，所以 Either 的 Kind 是 * $\to$ _ $\to$ _。</p></div><div class="post-footer" id="post-footer">
+</div><p>其中的星号 <code>*</code> 代表了一个具体类型（concrete type）。Int 本身就是一个具体类型，所以 <code>Int</code> 的 Kind 是 <code>*</code>。而 <code>Maybe</code> 是一个类型构造器，它接收一个具体类型返回一个新的具体类型，所以 Maybe 的 Kind 是 <code>*-&gt;*</code>。如果给 <code>Maybe</code> 传入了一个 Int，那么得到的 Maybe Int 就是一个具体的类型，它的 Kind 就是 <code>*</code>。<code>Either</code> 也是一个类型构造器，但它接收两个类型才产生一个新的类型，所以 <code>Either</code> 的 <code>Kind</code> 是 <code>* -&gt; * -&gt; *</code>。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

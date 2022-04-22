@@ -1,13 +1,11 @@
 # Haskell 学习笔记三
 
 
-
 Types & Typeclasses
 
 <!--more-->
 
 # Haskell Learning
-
 
 ## Types & Typeclasses
 
@@ -212,9 +210,9 @@ type String = [Char]
 newtype ZipList a = { getZipList :: [a] }
 ```
 
--   不同于`type`，它不是别名，可以使用`record`语法来直接定义取出值的函数
+- 不同于`type`，它不是别名，可以使用`record`语法来直接定义取出值的函数
 
--   不同于`data`，它只能有一个值构造器，但是速度要比`data`快，而且更加懒惰
+- 不同于`data`，它只能有一个值构造器，但是速度要比`data`快，而且更加懒惰
 
 ### Recursive data structures
 
@@ -279,6 +277,101 @@ instance (Eq m) => Eq (Maybe m) where
     _ == _ = False
 ```
 
+
+我们使用 haskell 定义一个我们自己的 list :
+
+```haskell
+data MyList t = EmptyList | ListNode t (MyList t)
+```
+
+> 官方的 Haskell 列表定义是这样的：`data [] a = [] | a : [a]`
+
+{{< figure src="list.png" >}}
+
+```haskell
+sum :: (MyList Integer) -> Integer
+sum EmptyList = 0
+sum (ListNode first rest) = first + (sum rest)
+```
+
+```haskell
+data MyList t = EmptyList | ListNode t (MyList t)
+
+appendRight :: MyList t -> t -> MyList t
+appendRight EmptyList element = (ListNode element EmptyList)
+appendRight (ListNode first rest) element = ListNode first (appendRight rest element)
+```
+
+#### Mylist
+
+```haskell
+data MyList t = EmptyList | ListNode t (MyList t) deriving (Show)
+
+listt = ListNode 7 (ListNode 3 (ListNode 5 (ListNode 8 EmptyList)))
+
+isEmpty :: MyList a -> Bool
+isEmpty EmptyList = True
+isEmpty _ = False
+
+take'' :: Int -> MyList a -> MyList a
+take'' n _
+  | n <= 0 = EmptyList
+take'' _ EmptyList = EmptyList
+take'' n (ListNode first rest) = ListNode first (take'' (n -1) rest)
+
+repeat' :: a -> MyList a
+repeat' x = ListNode x (repeat' x)
+
+sum' :: (Num a) => MyList a -> a
+sum' EmptyList = 0
+sum' (ListNode first rest) = first + sum' rest
+
+product' :: (Num a) => MyList a -> a
+product' EmptyList = 0
+product' (ListNode first rest) = first * product' rest
+
+appendRight :: a -> MyList a -> MyList a
+appendRight element EmptyList = ListNode element EmptyList
+appendRight element (ListNode first rest) = ListNode first (appendRight element rest)
+
+appendLeft :: a -> MyList a -> MyList a
+appendLeft = ListNode
+
+filter'' :: (a -> Bool) -> MyList a -> MyList a
+filter'' _ EmptyList = EmptyList
+filter'' judge (ListNode first rest)
+  | judge first = ListNode first (filter'' judge rest)
+  | otherwise = filter'' judge rest
+
+zipWith'' :: (a -> a -> a) -> MyList a -> MyList a -> MyList a
+zipWith'' _ EmptyList _ = EmptyList
+zipWith'' _ _ EmptyList = EmptyList
+zipWith'' func (ListNode first1 rest1) (ListNode first2 rest2) = ListNode (func first1 first2) (zipWith'' func rest1 rest2)
+
+addList :: MyList a -> MyList a -> MyList a
+addList l EmptyList = l
+addList EmptyList l = l
+addList l1 (ListNode first rest) = addList (appendRight first l1) rest
+
+quickSort :: (Ord a) => MyList a -> MyList a
+quickSort EmptyList = EmptyList
+quickSort (ListNode first rest) =
+  let small = quickSort (filter'' (<= first) rest)
+      big = quickSort (filter'' (> first) rest)
+   in small `addList` (ListNode first EmptyList) `addList` big
+
+createList :: [t] -> MyList t
+createList [] = EmptyList
+createList (x : xs) = ListNode x $ createList xs
+
+list1 = createList [2, 4, 1, 0, 7, 4]
+
+main = do
+  print list1
+  print $ quickSort list1
+```
+
+
 #### Functor Typeclass
 
 ```haskell
@@ -303,5 +396,5 @@ ghci> :k Either
 Either :: * -> * -> *
 ```
 
-其中的星号 \* 代表了一个具体类型（concrete type）。Int 本身就是一个具体类型，所以 Int 的 Kind 是 \*。而 Maybe 是一个类型构造器，它接收一个具体类型返回一个新的具体类型，所以 Maybe 的 Kind 是 \* $\to$ \*。如果给 Maybe 传入了一个 Int，那么得到的 Maybe Int 就是一个具体的类型，它的 Kind 就是 \*。Either 也是一个类型构造器，但它接收两个类型才产生一个新的类型，所以 Either 的 Kind 是 \* $\to$ _ $\to$ _。
+其中的星号 `*` 代表了一个具体类型（concrete type）。Int 本身就是一个具体类型，所以 `Int` 的 Kind 是 `*`。而 `Maybe` 是一个类型构造器，它接收一个具体类型返回一个新的具体类型，所以 Maybe 的 Kind 是 `*->*`。如果给 `Maybe` 传入了一个 Int，那么得到的 Maybe Int 就是一个具体的类型，它的 Kind 就是 `*`。`Either` 也是一个类型构造器，但它接收两个类型才产生一个新的类型，所以 `Either` 的 `Kind` 是 `* -> * -> *`。
 
