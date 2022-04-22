@@ -27,44 +27,6 @@ resources:
 
 # Haskell Learning
 
-## Functional Programming
-
-- Pure functions
-- Immutable Data
-- No/Less side-effects
-- Declatative
-- Easier to verity
-
-## 目录
-
-<!-- vim-markdown-toc GFM -->
-
-* [输入与输出](#输入与输出)
-    * [运行一个 Haskell 程序](#运行一个-haskell-程序)
-    * [Hello world](#hello-world)
-    * [do block](#do-block)
-    * [输入文本](#输入文本)
-    * [其他 IO 相关函数用法](#其他-io-相关函数用法)
-* [文件与流](#文件与流)
-    * [openFile](#openfile)
-    * [withFile](#withfile)
-    * [readFile](#readfile)
-    * [writeFile](#writefile)
-    * [appendFile](#appendfile)
-    * [buffer](#buffer)
-    * [openTempFile](#opentempfile)
-* [路径操作](#路径操作)
-    * [getCurrentDirectory](#getcurrentdirectory)
-    * [removeFile](#removefile)
-    * [renameFile](#renamefile)
-    * [doesFileExist](#doesfileexist)
-* [Command line arguments](#command-line-arguments)
-    * [getArgs](#getargs)
-    * [getProgName](#getprogname)
-* [Exceptions](#exceptions)
-
-<!-- vim-markdown-toc -->
-
 ## 输入与输出
 
 在 Haskell 中，一个函数不能改变状态，像是改变一个变量的内容。（当一个函数会改变状态，我们说这函数是有副作用的。） 函数无法改变状态的好处是它让我们促进了我们理解程序的容易度，但同时也造成了一个问题。假如说一个函数无法改变现实世界的状态，那它要如何打印出它所计算的结果？毕竟要告诉我们结果的话，它必须要改变输出设备的状态（譬如说屏幕），然后从屏幕传达到我们的脑，并改变我们心智的状态。

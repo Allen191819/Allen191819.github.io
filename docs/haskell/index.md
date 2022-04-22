@@ -1,8 +1,6 @@
 # Haskell 学习笔记一
 
 
-
-
 Haskell 基础语法
 
 <!--more-->
@@ -16,24 +14,6 @@ Haskell 基础语法
 - No/Less side-effects
 - Declatative
 - Easier to verity
-
-## 目录
-<!-- vim-markdown-toc GFM -->
-
-* [基础语法](#基础语法)
-    * [基础运算](#基础运算)
-    * [函数调用](#函数调用)
-    * [List](#list)
-    * [List comprehension](#list-comprehension)
-    * [Tuple](#tuple)
-* [Syntax in Functions](#syntax-in-functions)
-    * [定义函数](#定义函数)
-    * [Pattern matching](#pattern-matching)
-    * [Guards](#guards)
-    * [关键字 where 和 let](#关键字-where-和-let)
-    * [Case expressions](#case-expressions)
-
-<!-- vim-markdown-toc -->
 
 ## 基础语法
 

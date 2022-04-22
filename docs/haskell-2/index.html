@@ -33,7 +33,7 @@
                             "url": "https:\/\/allen191819.xyz\/haskell-2\/featured-image.png",
                             "width":  1129 ,
                             "height":  717 
-                        }],"genre": "posts","keywords": "Lambda, FP","wordcount":  944 ,
+                        }],"genre": "posts","keywords": "Lambda, FP","wordcount":  899 ,
         "url": "https:\/\/allen191819.xyz\/haskell-2\/","datePublished": "2022-03-03T21:57:40+08:00","dateModified": "2022-03-14T16:45:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Allen191819","logo": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Haskell 学习笔记三</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://allen191819.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Allen191819</a></span>&nbsp;<span class="post-category">included in <a href="/categories/haskell/"><i class="far fa-folder fa-fw"></i>Haskell</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-03">2022-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;944 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-03">2022-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;899 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;<span id="/haskell-2/" class="leancloud_visitors" data-flag-title="Haskell 学习笔记三">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -133,8 +133,6 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#functional-programming">Functional Programming</a></li>
-    <li><a href="#目录">目录</a></li>
     <li><a href="#types--typeclasses">Types &amp; Typeclasses</a>
       <ul>
         <li><a href="#type">Type</a></li>
@@ -170,50 +168,6 @@
 </nav></div>
             </div><div class="content" id="content"><p>Types &amp; Typeclasses</p>
 <h1 id="haskell-learning">Haskell Learning</h1>
-<h2 id="functional-programming">Functional Programming</h2>
-<ul>
-<li>Pure functions</li>
-<li>Immutable Data</li>
-<li>No/Less side-effects</li>
-<li>Declatative</li>
-<li>Easier to verity</li>
-</ul>
-<h2 id="目录">目录</h2>
-<!-- vim-markdown-toc GFM -->
-<ul>
-<li><a href="#types--typeclasses" rel="">Types &amp; Typeclasses</a>
-<ul>
-<li><a href="#type" rel="">Type</a></li>
-<li><a href="#typeclasses" rel="">Typeclasses</a></li>
-</ul>
-</li>
-<li><a href="#%e5%ae%9a%e4%b9%89%e6%96%b0%e7%9a%84-type-%e5%92%8c-typeclass" rel="">定义新的 Type 和 Typeclass</a>
-<ul>
-<li><a href="#algebraic-data-types" rel="">Algebraic Data Types</a></li>
-<li><a href="#record-syntax" rel="">Record Syntax</a></li>
-<li><a href="#type-parameters" rel="">Type parameters</a>
-<ul>
-<li><a href="#either" rel="">Either</a></li>
-</ul>
-</li>
-<li><a href="#derived-instances" rel="">Derived instances</a></li>
-<li><a href="#type-synonyms" rel="">Type synonyms</a>
-<ul>
-<li><a href="#newtype-keyword" rel="">newtype keyword</a></li>
-</ul>
-</li>
-<li><a href="#recursive-data-structures" rel="">Recursive data structures</a></li>
-<li><a href="#%e5%ae%9a%e4%b9%89%e6%96%b0%e7%9a%84-typeclass" rel="">定义新的 Typeclass</a>
-<ul>
-<li><a href="#%e5%88%9b%e5%bb%ba%e5%ae%9e%e4%be%8b" rel="">创建实例</a></li>
-<li><a href="#functor-typeclass" rel="">Functor Typeclass</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#kind" rel="">Kind</a></li>
-</ul>
-<!-- vim-markdown-toc -->
 <h2 id="types--typeclasses">Types &amp; Typeclasses</h2>
 <h3 id="type">Type</h3>
 <p>Haskell 是 <code>Static Type</code>

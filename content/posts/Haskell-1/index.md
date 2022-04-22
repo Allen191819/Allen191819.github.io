@@ -14,42 +14,17 @@ categories: ["Haskell"]
 lightgallery: true
 
 math:
-    enable: true
+  enable: true
 resources:
-- name: featured-image
-  src: featured-image.jpg
+  - name: featured-image
+    src: featured-image.jpg
 ---
-
 
 高阶函数与模块
 
 <!--more-->
 
 # Haskell Learning
-
-## Functional Programming
-
-- Pure functions
-- Immutable Data
-- No/Less side-effects
-- Declatative
-- Easier to verity
-
-## 目录
-
-<!-- vim-markdown-toc GFM -->
-
-* [高阶函数](#高阶函数)
-    * [Curried function](#curried-function)
-    * [高阶函数](#高阶函数-1)
-    * [一些高阶函数](#一些高阶函数)
-    * [Function application](#function-application)
-    * [Function Composition](#function-composition)
-    * [lambda λ](#lambda-)
-* [Modules](#modules)
-    * [编写自己的 Modules](#编写自己的-modules)
-
-<!-- vim-markdown-toc -->
 
 ## 高阶函数
 
@@ -60,7 +35,6 @@ function**(柯里化的函数)，例如一个二元函数 f x y，执行时，�
 f x， 再用参数 y 调用它。
 
 $$max :: Ord a \Rightarrow a \to a \to a$$
-
 
 ```haskell
 ghci> max 4 5

@@ -33,7 +33,7 @@
                             "url": "https:\/\/allen191819.xyz\/haskell-3\/featured-image.jpg",
                             "width":  1133 ,
                             "height":  635 
-                        }],"genre": "posts","keywords": "Lambda, FP","wordcount":  1118 ,
+                        }],"genre": "posts","keywords": "Lambda, FP","wordcount":  1074 ,
         "url": "https:\/\/allen191819.xyz\/haskell-3\/","datePublished": "2022-03-04T21:57:40+08:00","dateModified": "2022-03-04T16:45:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Allen191819","logo": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Haskell 学习笔记四</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://allen191819.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Allen191819</a></span>&nbsp;<span class="post-category">included in <a href="/categories/haskell/"><i class="far fa-folder fa-fw"></i>Haskell</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-04">2022-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1118 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-04">2022-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1074 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;<span id="/haskell-3/" class="leancloud_visitors" data-flag-title="Haskell 学习笔记四">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -133,8 +133,6 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#functional-programming">Functional Programming</a></li>
-    <li><a href="#目录">目录</a></li>
     <li><a href="#输入与输出">输入与输出</a>
       <ul>
         <li><a href="#运行一个-haskell-程序">运行一个 Haskell 程序</a></li>
@@ -174,54 +172,6 @@
 </nav></div>
             </div><div class="content" id="content"><p>输入与输出</p>
 <h1 id="haskell-learning">Haskell Learning</h1>
-<h2 id="functional-programming">Functional Programming</h2>
-<ul>
-<li>Pure functions</li>
-<li>Immutable Data</li>
-<li>No/Less side-effects</li>
-<li>Declatative</li>
-<li>Easier to verity</li>
-</ul>
-<h2 id="目录">目录</h2>
-<!-- vim-markdown-toc GFM -->
-<ul>
-<li><a href="#%e8%be%93%e5%85%a5%e4%b8%8e%e8%be%93%e5%87%ba" rel="">输入与输出</a>
-<ul>
-<li><a href="#%e8%bf%90%e8%a1%8c%e4%b8%80%e4%b8%aa-haskell-%e7%a8%8b%e5%ba%8f" rel="">运行一个 Haskell 程序</a></li>
-<li><a href="#hello-world" rel="">Hello world</a></li>
-<li><a href="#do-block" rel="">do block</a></li>
-<li><a href="#%e8%be%93%e5%85%a5%e6%96%87%e6%9c%ac" rel="">输入文本</a></li>
-<li><a href="#%e5%85%b6%e4%bb%96-io-%e7%9b%b8%e5%85%b3%e5%87%bd%e6%95%b0%e7%94%a8%e6%b3%95" rel="">其他 IO 相关函数用法</a></li>
-</ul>
-</li>
-<li><a href="#%e6%96%87%e4%bb%b6%e4%b8%8e%e6%b5%81" rel="">文件与流</a>
-<ul>
-<li><a href="#openfile" rel="">openFile</a></li>
-<li><a href="#withfile" rel="">withFile</a></li>
-<li><a href="#readfile" rel="">readFile</a></li>
-<li><a href="#writefile" rel="">writeFile</a></li>
-<li><a href="#appendfile" rel="">appendFile</a></li>
-<li><a href="#buffer" rel="">buffer</a></li>
-<li><a href="#opentempfile" rel="">openTempFile</a></li>
-</ul>
-</li>
-<li><a href="#%e8%b7%af%e5%be%84%e6%93%8d%e4%bd%9c" rel="">路径操作</a>
-<ul>
-<li><a href="#getcurrentdirectory" rel="">getCurrentDirectory</a></li>
-<li><a href="#removefile" rel="">removeFile</a></li>
-<li><a href="#renamefile" rel="">renameFile</a></li>
-<li><a href="#doesfileexist" rel="">doesFileExist</a></li>
-</ul>
-</li>
-<li><a href="#command-line-arguments" rel="">Command line arguments</a>
-<ul>
-<li><a href="#getargs" rel="">getArgs</a></li>
-<li><a href="#getprogname" rel="">getProgName</a></li>
-</ul>
-</li>
-<li><a href="#exceptions" rel="">Exceptions</a></li>
-</ul>
-<!-- vim-markdown-toc -->
 <h2 id="输入与输出">输入与输出</h2>
 <p>在 Haskell 中，一个函数不能改变状态，像是改变一个变量的内容。（当一个函数会改变状态，我们说这函数是有副作用的。） 函数无法改变状态的好处是它让我们促进了我们理解程序的容易度，但同时也造成了一个问题。假如说一个函数无法改变现实世界的状态，那它要如何打印出它所计算的结果？毕竟要告诉我们结果的话，它必须要改变输出设备的状态（譬如说屏幕），然后从屏幕传达到我们的脑，并改变我们心智的状态。</p>
 <p>不要太早下结论，Haskell 实际上设计了一个非常聪明的系统来处理有副作用的函数，它漂亮地将我们的程序区分成纯粹跟非纯粹两部分。非纯粹的部分负责跟键盘还有屏幕沟通。有了这区分的机制，在跟外界沟通的同时，我们还是能够有效运用纯粹所带来的好处，像是惰性求值、容错性跟模块性。</p>

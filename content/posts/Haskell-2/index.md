@@ -24,36 +24,6 @@ Types & Typeclasses
 
 # Haskell Learning
 
-## Functional Programming
-
--   Pure functions
--   Immutable Data
--   No/Less side-effects
--   Declatative
--   Easier to verity
-
-## 目录
-
-<!-- vim-markdown-toc GFM -->
-
-* [Types & Typeclasses](#types--typeclasses)
-    * [Type](#type)
-    * [Typeclasses](#typeclasses)
-* [定义新的 Type 和 Typeclass](#定义新的-type-和-typeclass)
-    * [Algebraic Data Types](#algebraic-data-types)
-    * [Record Syntax](#record-syntax)
-    * [Type parameters](#type-parameters)
-        * [Either](#either)
-    * [Derived instances](#derived-instances)
-    * [Type synonyms](#type-synonyms)
-        * [newtype keyword](#newtype-keyword)
-    * [Recursive data structures](#recursive-data-structures)
-    * [定义新的 Typeclass](#定义新的-typeclass)
-        * [创建实例](#创建实例)
-        * [Functor Typeclass](#functor-typeclass)
-* [Kind](#kind)
-
-<!-- vim-markdown-toc -->
 
 ## Types & Typeclasses
 
