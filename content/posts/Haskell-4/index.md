@@ -3,7 +3,7 @@ weight: 4
 title: "Haskell 学习笔记五"
 date: 2022-04-22
 lastmod: 2021-04-22
-draft: true
+draft: false
 author: "Allen191819"
 authorLink: "https://allen191819.xyz"
 description: "Haskell 函子、应用函子与单子"
