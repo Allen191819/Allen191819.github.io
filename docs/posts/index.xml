@@ -12,13 +12,6 @@
     <guid>https://allen191819.xyz/sonic-system/</guid>
     <description><![CDATA[<p>借助 mermaid 在 markdown 中嵌入图表</p>]]></description>
 </item><item>
-    <title>Haskell 学习笔记五</title>
-    <link>https://allen191819.xyz/haskell-4/</link>
-    <pubDate>Fri, 22 Apr 2022 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://allen191819.xyz/haskell-4/</guid>
-    <description><![CDATA[<p>Haskell 函子、应用函子与单子</p>]]></description>
-</item><item>
     <title>Vagrant</title>
     <link>https://allen191819.xyz/vagrant/</link>
     <pubDate>Wed, 20 Apr 2022 00:00:00 &#43;0000</pubDate>
@@ -75,5 +68,12 @@
     <author>Author</author>
     <guid>https://allen191819.xyz/latexsymbols/</guid>
     <description><![CDATA[<p>Latex 属性符号速查</p>]]></description>
+</item><item>
+    <title>Celeba 数据集</title>
+    <link>https://allen191819.xyz/celeba/</link>
+    <pubDate>Sun, 12 Dec 2021 21:57:40 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://allen191819.xyz/celeba/</guid>
+    <description><![CDATA[<p>对于 Celeba 数据集的介绍</p>]]></description>
 </item></channel>
 </rss>

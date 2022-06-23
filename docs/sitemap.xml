@@ -3,7 +3,6 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>https://allen191819.xyz/sonic-system/</loc><lastmod>2022-06-23T12:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://allen191819.xyz/haskell-4/</loc><lastmod>2021-04-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/vagrant/</loc><lastmod>2022-04-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/container/</loc><lastmod>2021-04-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/ava/</loc><lastmod>2021-04-15T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -26,14 +25,14 @@
             <loc>https://allen191819.xyz/tags/system/</loc><lastmod>2022-06-23T12:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://allen191819.xyz/categories/system/</loc><lastmod>2022-06-23T12:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://allen191819.xyz/tags/</loc><lastmod>2022-06-23T12:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://allen191819.xyz/tags/fp/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://allen191819.xyz/categories/haskell/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://allen191819.xyz/tags/lambda/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/tags/container-virtualization/</loc><lastmod>2022-04-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/categories/os/</loc><lastmod>2022-04-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/tags/asoul/</loc><lastmod>2021-04-15T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/tags/ava/</loc><lastmod>2021-04-15T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/categories/entertainment/</loc><lastmod>2021-04-15T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://allen191819.xyz/tags/fp/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://allen191819.xyz/categories/haskell/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://allen191819.xyz/tags/lambda/</loc><lastmod>2022-03-14T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/tags/cheetsheet/</loc><lastmod>2020-02-27T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/tags/latex/</loc><lastmod>2020-02-27T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://allen191819.xyz/categories/latex/</loc><lastmod>2020-02-27T16:45:40&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
