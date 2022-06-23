@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>SONiC 系统架构 - Allen</title><meta name="Description" content="学习SONiC系统"><meta property="og:title" content="SONiC 系统架构" />
+<meta property="og:description" content="学习SONiC系统" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://allen191819.xyz/sonic-system/" /><meta property="og:image" content="https://allen191819.xyz/sonic-system/featured-image.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-23T11:57:40+08:00" />
+<meta property="article:modified_time" content="2022-06-23T12:45:40+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://allen191819.xyz/sonic-system/featured-image.png"/>
+<meta name="twitter:title" content="SONiC 系统架构"/>
+<meta name="twitter:description" content="学习SONiC系统"/>
+<meta name="application-name" content="Allen">
+<meta name="apple-mobile-web-app-title" content="Allen"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://allen191819.xyz/sonic-system/" /><link rel="prev" href="https://allen191819.xyz/haskell-4/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SONiC 系统架构",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/allen191819.xyz\/sonic-system\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/allen191819.xyz\/sonic-system\/featured-image.png",
+                            "width":  1920 ,
+                            "height":  1080 
+                        }],"genre": "posts","keywords": "SONiC study, System","wordcount":  718 ,
+        "url": "https:\/\/allen191819.xyz\/sonic-system\/","datePublished": "2022-06-23T11:57:40+08:00","dateModified": "2022-06-23T12:45:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Allen191819","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/allen191819.xyz\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Allen191819"
+            },"description": "学习SONiC系统"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Allen"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/Allen191819" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">SONiC 系统架构</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://allen191819.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Allen191819</a></span>&nbsp;<span class="post-category">included in <a href="/categories/system/"><i class="far fa-folder fa-fw"></i>System</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-23">2022-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;718 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;<span id="/sonic-system/" class="leancloud_visitors" data-flag-title="SONiC 系统架构">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/sonic-system/featured-image.png"
+        data-srcset="/sonic-system/featured-image.png, /sonic-system/featured-image.png 1.5x, /sonic-system/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/sonic-system/featured-image.png"
+        title="学习SONiC系统" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1架构总览">1.架构总览</a></li>
+    <li><a href="#2各模块功能">2.各模块功能</a>
+      <ul>
+        <li><a href="#21-teamd-container">2.1 Teamd container</a></li>
+        <li><a href="#22-pmon-container">2.2 Pmon container</a></li>
+        <li><a href="#23-snmp-container">2.3 Snmp container</a></li>
+        <li><a href="#24-dhcp-relay-container">2.4 Dhcp-relay container</a></li>
+        <li><a href="#25-lldp-container">2.5 Lldp container</a></li>
+        <li><a href="#26-bgp-container">2.6 Bgp container</a></li>
+        <li><a href="#27-database-container">2.7 Database container</a></li>
+        <li><a href="#28-swss-container">2.8 Swss container</a></li>
+        <li><a href="#29-syncd-container">2.9 Syncd container</a></li>
+        <li><a href="#210-cli--sonic-cfggen">2.10 CLI / sonic-cfggen</a></li>
+      </ul>
+    </li>
+    <li><a href="#3子系统交互">3.子系统交互</a>
+      <ul>
+        <li><a href="#lldp-状态交互"><strong>LLDP 状态交互</strong></a></li>
+        <li><a href="#snmp-状态交互"><strong>SNMP 状态交互</strong></a></li>
+        <li><a href="#路由状态交互"><strong>路由状态交互</strong></a></li>
+        <li><a href="#端口状态交互"><strong>端口状态交互</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#参考文献">参考文献</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>借助 mermaid 在 markdown 中嵌入图表</p>
+<h1 id="sonic-系统">SONiC 系统</h1>
+<h2 id="1架构总览">1.架构总览</h2>
+<p>SONiC系统的架构依托与<strong>Docker</strong>与<strong>Redis</strong>，由许多模块组成，这些模块通过一个集中的、可扩展的架构相互作用。
+这个结构依赖于redis-database引擎的使用：即一个键-值数据库。它提供一个独立于语言的接口，一个用于所有SONiC子系统之间的数据持久性、复制和多进程通信的方法。
+具有 <code>publisher/subscriber</code> 的消息传递模式，应用程序可以只订阅它们需要的数据，无须知道功能的具体实现细节。
+SONiC将每个模块放置在独立的docker容器中，以保持组件之间的高内聚性，同时减少不相连组件之间的耦合。
+主要有以下docker容器：</p>
+<ul>
+<li>Teamd：运行并实现链路聚合（LAG）功能。</li>
+<li>Pmon：记录硬件传感器读数并发出警报。</li>
+<li>Snmp：实现SNMP功能。</li>
+<li>Dhcp-relay：将DHCP请求从没有DHCP服务器的子网中连接到其他子网上的一台或多台DHCP服务器。</li>
+<li>Lldp：实现链路层发现协议功能。建立lLLDP连接。</li>
+<li>Bgp：运行支持的路由协议之一，例如ospf，isis，ldp，bgp等。</li>
+<li>Database：redis-engine托管的主要数据库。</li>
+<li>Swss：实现所有SONiC模块之间进行有效通信和与SONiC应用层之间的交互。监听并推送各个组件的状态。</li>
+<li>Syncd：实现交换机网络状态和实际硬件进行同步</li>
+</ul>
+<p>下图是这些容器的结构图以及如何容器之间如何进行交互。蓝色箭头来表示与集中式redis引擎的交互，黑色箭头来表示其他的交互（netlink, /sys file-system, etc）。SONiC的配置模块sonic-cfggen和CLI是存在于Linux主机中的模块。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="img/index/overview.png"
+        data-srcset="/sonic-system/img/index/overview.png, img/index/overview.png 1.5x, /sonic-system/img/index/overview.png 2x"
+        data-sizes="auto"
+        alt="/sonic-system/img/index/overview.png"
+        title="overview.png" /></p>
+<ul>
+<li>数据库驱动：以<code>RedisDB</code>为核心</li>
+<li>高可靠性：所有的用户进程都被封装在容器中</li>
+<li>硬件通用性：统一的SAI接口，屏蔽了不同厂商的SDK差异</li>
+<li>特性精简：满足数据中心应用的特性集</li>
+</ul>
+<h2 id="2各模块功能">2.各模块功能</h2>
+<h3 id="21-teamd-container">2.1 Teamd container</h3>
+<p>运行并实现<strong>LAG（Link Aggregation functionality）链路聚合</strong>。teamsyncd 模块允许teamed与南向子系统进行交互
+另：LAG：链路聚合是在两个设备间使用多个物理链路创建一个逻辑链路的功能，这种方式允许物理链路间共享负载。交换机网络中使用的一种链路聚合的方法是EtherChannel。EtherChannel可以通过协议PAGP（Port Aggregation Protocol）或LACP（Link Aggregation Protocol）来配置。
+<a href="https://blog.csdn.net/qq_23930765/article/details/119815287?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;spm=1018.2226.3001.4187" target="_blank" rel="noopener noreffer">链路聚合</a></p>
+<h3 id="22-pmon-container">2.2 Pmon container</h3>
+<p>“ sensored”的守护程序，记录<strong>硬件传感器</strong>读数并发出警报。托管“ fan-control”进程，收集与风扇相关的状态。</p>
+<h3 id="23-snmp-container">2.3 Snmp container</h3>
+<ul>
+<li>Snmpd：snmp服务器，负责处理从外部网络元素传入的snmp轮询。</li>
+<li>Snmp-agent(sonic_ax_impl)：snmp子代理的实现，从集中式redis-engine中的SONiC数据库收集信息,提供给主代理(snmpd)。</li>
+</ul>
+<p>另：SNMP(Simple Network Management Protocol)：应用层协议，靠UDP进行传输。常用于对路由器交换机等网络设备的管理，管理人员通过它来**收集网络设备运行状况，了解网络性能、发现并解决网络问题。**SNMP分为管理端和代理端(agent)，管理端的默认端口为UDP 162，主要用来接收Agent的消息如TRAP告警消息;Agent端使用UDP 161端口接收管理端下发的消息如SET/GET指令等。
+<a href="https://blog.csdn.net/bbwangj/article/details/80981098?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165562805216782390518627%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=165562805216782390518627&amp;biz_id=0&amp;spm=1018.2226.3001.4187" target="_blank" rel="noopener noreffer">Snmp</a></p>
+<h3 id="24-dhcp-relay-container">2.4 Dhcp-relay container</h3>
+<p>DHCP中继代理可将DHCP请求从没有DHCP服务器的子网中连接到其他子网上的一台或多台DHCP服务器。
+另：DHCP（Dynamic Host Configuration Protocol）：动态主机配置协议，是一个应用层协议。当我们将客户主机ip地址设置为动态获取方式时，<strong>DHCP服务器就会根据DHCP协议给客户端分配IP，使得客户机能够利用这个IP上网。集中的管理、分配IP地址，使网络环境中的主机动态的获得IP地址、Gateway地址、DNS服务器地址等信息。</strong>
+<a href="https://www.cnblogs.com/ruochenchen/archive/2013/05/18/3085776.html" target="_blank" rel="noopener noreffer">HDCP</a></p>
+<h3 id="25-lldp-container">2.5 Lldp container</h3>
+<ul>
+<li>lldp：实现LLDP功能，建立lldp连接以advertise/receive系统功能。</li>
+<li>Lldp_syncd：上传LLDP的发现的状态到redis-engine，这样可以使得需要此状态的应用（如SNMP）从redis处获得此信息。</li>
+<li>Lldpmgr：为lldp进程提供incremental-configuration功能，它通过订阅redis引擎中的STATE_DB来实现。</li>
+</ul>
+<p>另：LLDP（Link Layer Discovery Protocol）：链路层发现协议。设备通过在网络中发送LLDPDU（Data Unit）来通告其他设备自身的状态（理地址，设备标识，接口标识等）。可以使不同厂商的设备在网络中相互发现并<strong>交互各自的系统及配置信息</strong>。 当一个设备从网络中接收到其它设备的这些信息时，它就将这些信息以MIB的形式存储起来。<strong>LLDP只传输，不管理</strong>。
+<a href="https://blog.csdn.net/tushanpeipei/article/details/112481861?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165562870316782391827960%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=165562870316782391827960&amp;biz_id=0&amp;spm=1018.2226.3001.4187" target="_blank" rel="noopener noreffer">LLDP</a>
+另：MIB（Management Information Base）：管理信息库。网络管理的标准架构之一，MIB定义了受管设备必须保存的数据项、允许对每个数据项进行的操作及其含义，即管理系统可访问的受管设备的控制和状态信息等数据变量都保存在MIB中。</p>
+<h3 id="26-bgp-container">2.6 Bgp container</h3>
+<p>运行支持的路由协议之一，例如ospf，isis，ldp，bgp等。</p>
+<ul>
+<li>bgpd：路由的实现。外部的路由状态通过常规的tcp/udp sockets 接收，并通过zebra / fpmsyncd接口下推到转发平面。</li>
+<li>zebra：充当传统的IP路由管理。它提供内核路由表的更新，接口的查找和路由的重新分配。将计算出的FIB下推到内核（通过netlink接口）和转发过程中涉及的南向组件（通过Forwarding-Plane-Manager，FPM接口）</li>
+<li>fpmsyncd：收集zebra下发的FIB状态，将内容放入redis-engine托管的APPL-DB中。</li>
+</ul>
+<p>另：FIB（Forward Information dataBase）：转发信息库。路由一般手段：先到路由缓存（RouteTable）中查找表项，如果能查找到，就直接将对应的一项作为路由规则；如果查不到，就到FIB中根据规则换算出来，并且增加一项新的，在路由缓存中将项目添加进去。
+另：RIB（Route Information dataBase）：FIB强调的是作为转发的路由表，RIB是用来做路由管理的表。RIP、OSPF、BGP、ISIS都是动态路由协议，它们学习到的路由首先要通告给RIB表。RIB表把所有路由协议学习到的路由汇总到一起，把优选结果的路由加入到FIB表，供转发使用。所以FIB是RIB的一个子集。</p>
+<h3 id="27-database-container">2.7 Database container</h3>
+<p>redis-engine托管的主要数据库。SONiC应用程序可以通过公开的UNIX socket访问该引擎中保存的数据库。</p>
+<ul>
+<li><strong>APPL_DB</strong>: 储存所有应用容器生成的状态，如路由、下一跳、邻居节点等。所有应用与SONiC其他子系统交互的南向接入点。</li>
+<li><strong>CONFIG_DB</strong>: 储存SONiC应用产生的配置状态，如 port configurations, interfaces, vlans, 等。</li>
+<li><strong>STATE_DB</strong>: 储存实体配置的 “key” 操作状态，以确保SONiC子系统间的依赖性。例如，LAG端口通道可能潜在的指代物理端口、VLAN的定义可以引用系统中不确定的端口的成员。存储所有解决交叉模块依赖性的状态。</li>
+<li><strong>ASIC_DB</strong>: 存储必要的运行ASIC配置和操作的驱动状态。存储格式易于syncd与asic SDK的交互。</li>
+<li><strong>FLEX_COUNTER_DB</strong>: 存放灵活计数器配置。</li>
+<li><strong>COUNTERS_DB</strong>: 存储每个端口的 counters/statistics。能够满足CLI本地需求或用于遥测通道。</li>
+</ul>
+<h3 id="28-swss-container">2.8 Swss container</h3>
+<p>Switch State Service，包含一组工具，以<strong>允许所有SONiC模块之间进行有效通信</strong>。<strong>database container主要提供存储能力，Swss主要侧重于提供促进所有不同方之间的通信和仲裁的机制。</strong>
+Swss也负责与北向的应用层进行交互。fpmsyncd, teamsyncd and lldp_syncd是例外。这种提供SONiC应用与SONiC中心架构(redis-engine)的连接的进程都被命名为*syncd。</p>
+<ul>
+<li>Portsyncd: 监听端口相关的连接事件。portsyncd在启动阶段获得物理端口信息，全部发送给APPL_DB，端口速度，链路和mtu都通过这个通道传输。Portsyncd还将状态发送到STATE_DB。</li>
+<li>Intfsyncd: 侦听与接口相关的netlink事件，发送给APPL_DB。例如新的和更改的接口的IP地址在这个进程中处理。</li>
+<li>Neighsyncd:监听邻居事件相关的netlink事件，例如mac地址与邻居的address-family。 这些状态会构建数据平面中以L2-rewrite为目的所需的adjacency-table。所有的状态也都会传输给APPL_DB。</li>
+<li>Teamsyncd: 和Teamd container共同运行，获得的状态发送给APPL_DB。</li>
+<li>Fpmsyncd: 和bgp container共同运行，获得的状态发送给APPL_DB。Previously discussed – running within bgp docker container. Again, collected state is injected into APPL_DB.</li>
+<li>Lldp_syncd: 和lldp container共同运行。</li>
+</ul>
+<p>当将信息注入redis-engine所代表的publisher-subscriber流水线时，上述过程显然充当了状态产生者的角色。但是，必须有一个进程集合来订阅和重新分配所有到来的状态，这就是以下进程：</p>
+<ul>
+<li>Orchagent: Swss里最关键的部分。包含如何从*synd中提状态的逻辑，相应地处理和发送信息，最终发送到南向接口。Orchagent既获取来自APPL_DB的状态，又将状态推送到ASIC_DB中。</li>
+<li>IntfMgrd: 对到达APPL_DB、CONFIG_DB、STATE_DB的状态做出反应来配置Linux内核接口。这一步只在没有状态冲突或者状态不一致的情况下完成。</li>
+<li>VlanMgrd: 对到达APPL_DB、CONFIG_DB、STATE_DB的状态做出反应来配置Linux内核vlan接口。只有在没有任何依赖状态/条件被满足时，才会执行此步骤。</li>
+</ul>
+<h3 id="29-syncd-container">2.9 Syncd container</h3>
+<p><strong>提供机制允许交换机网络状态和实际硬件进行同步，包括初始化、配置、ASIC当前状态的收集。</strong></p>
+<ul>
+<li>Syncd: 执行同步逻辑，在编译时，连接硬件厂商提供的ASIC SDK库，并通过调用为此提供的接口将状态注入ASIC。Syncd订阅ASIC_DB来获取Swss的状态，同时，推送来自硬件的状态。</li>
+<li>SAI API: Switch Abstraction Interface (SAI) 定义了一个API来提供一个厂商独立的统一规范的控制转发元素，例如交换机ASIC，NPU或者软件交换机。</li>
+<li>ASIC SDK: 硬件厂商应提供一个与SAI能够友好交互的SDK来驱动他们的芯片。通常以动态链接库的形式提供此实现，该库链接到对应驱动程序。</li>
+</ul>
+<h3 id="210-cli--sonic-cfggen">2.10 CLI / sonic-cfggen</h3>
+<p>负责提供<strong>CLI功能和系统配置能力</strong>。</p>
+<ul>
+<li>CLI ：依赖于Python的Click库来提供使用者灵活性和自定义的方法来构建命令行工具。</li>
+<li>Sonic-cfggen：被CLI调用来实现配置的改变或者任何与SONiC模块交互的配置动作。</li>
+</ul>
+<h2 id="3子系统交互">3.子系统交互</h2>
+<h3 id="lldp-状态交互"><strong>LLDP 状态交互</strong></h3>
+<p>下图描述了在 lldp 状态转移期间观察到的一组相互作用。在这个特定的示例中，我们迭代了在携带状态变化的 LLDP 消息到达时发生的一系列步骤。</p>
+<ul>
+<li>(1) 在 LLDP 容器初始化期间， lldpmgrd 订阅 STATE_DB 以实时获取系统中物理端口的状态 —— lldpmgrd 的轮询周期每 5 秒运行一次。基于这些信息， Lldpd (及其网络对等体) 将了解系统端口状态的变化以及影响其运行的任何配置变化。</li>
+<li>(2) 一个新的 LLDP 报文到达内核空间的 LLDP socket 。内核的网络栈最终将相关的有效负载交付给 lldp 进程。</li>
+<li>(3) Lldp 解析并消化这个新状态， lldp_syncd 在执行 lldpctl cli 命令 (通常每 10 秒运行一次) 的过程中最终获取这个新状态。</li>
+<li>Lldp_syncd 将这个新状态推到 APPL_DB 中，具体地说，推到 LLDP_ENTRY_TABLE 表中。</li>
+<li>(5) 从现在开始，所有订阅这个表的实体都应该收到一个新状态的副本 (目前， snmp 是唯一感兴趣的侦听器)。</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="img/index/image-1.png"
+        data-srcset="/sonic-system/img/index/image-1.png, img/index/image-1.png 1.5x, /sonic-system/img/index/image-1.png 2x"
+        data-sizes="auto"
+        alt="/sonic-system/img/index/image-1.png"
+        title="image.png" /></p>
+<h3 id="snmp-状态交互"><strong>SNMP 状态交互</strong></h3>
+<p>如前所述， snmp 容器同时承载一个 snmp 主代理 (snmpd) 和一个特定于 sonic 的 agentX 进程 ( snmp_subagent )。该子代理与所有 redis 数据库 / 表进行交互，这些 redis 数据库 / 表提供了可以派生 MIB 状态的信息。具体来说， snmp-agent 订阅了以下数据库 / 表:</p>
+<ul>
+<li><strong>APPL_DB</strong>: PORT_TABLE, LAG_TABLE, LAG_MEMBER_TABLE, LLDP_ENTRY_TABLE</li>
+<li><strong>STATE_DB</strong>: *</li>
+<li><strong>COUNTERS_DB</strong>: *</li>
+<li><strong>ASIC_DB: ASIC_STATE</strong>:SAI_OBJECT_TYPE_FDB*</li>
+</ul>
+<p>下图描述了系统处理传入 snmp 查询期间各种 SONiC 组件之间的典型交互。</p>
+<ul>
+<li>(0) 在初始化 snmp-subagent 进程中支持的不同 MIB 子组件时，该 MIB 子组件与上述各个 db 建立连接。从这一刻起，从所有这些 db 获得的状态被本地缓存到 snmp-subagent 中。该信息每隔几秒 (&lt; 60) 刷新一次，以确保 db 和 snmp-subagent 完全同步。</li>
+<li>(1) 一个 snmp 查询到达内核空间的 snmp 的套接字。内核的网络栈将数据包发送给 snmpd 进程。</li>
+<li>(2) snmp 消息被解析，一个相关的请求被发送到 SONiC 的 agentX 子代理 (即 sonic_ax_impl)。</li>
+<li>(3) Snmp-subagent 服务于其本地数据结构中缓存的状态之外的查询，并将信息发送回 snmpd 进程。</li>
+<li>(4) Snmpd 最终通过常用的 socket 接口向发起者发送一个应答。</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="img/index/image-2.png"
+        data-srcset="/sonic-system/img/index/image-2.png, img/index/image-2.png 1.5x, /sonic-system/img/index/image-2.png 2x"
+        data-sizes="auto"
+        alt="/sonic-system/img/index/image-2.png"
+        title="image.png" /></p>
+<h3 id="路由状态交互"><strong>路由状态交互</strong></h3>
+<p>在本节中，我们将遍历发生在 SONiC 中的一系列步骤，以处理从 eBGP 对等体接收到的新路由。我们假设这个会话已经建立，并且我们正在学习一条新的路由，它使用一个直接连接的对等体作为它的下一跳。</p>
+<ul>
+<li>(0) 在 BGP 容器初始化过程中， zebra 通过常规 TCP 套接字连接到 fpmsyncd 。在稳定 / 非瞬态条件下，存放在 zebra 、 linux 内核、<strong>APPL_DB</strong> 和 <strong>ASIC_DB</strong> 中的路由表应该是完全一致 / 等效的。</li>
+<li>(1) 一个新的 TCP 报文到达内核空间的 bgp socket。内核的网络栈最终将相关的有效载荷传递给 bgpd 进程。</li>
+<li>(2) Bgpd 解析新报文，处理 bgp-update，并通知 zebra 这个新前缀的存在及其相关的下一跳协议。</li>
+<li>(3) zebra 通过判断该前缀的可行性 / 可达性 (例如现有的转发 nh)，生成一个 route-netlink 消息将这个新的状态注入到 kernel 中。 Zebra 利用 FPM 接口将这个网络链路路由消息传递给 fpmsyncd。</li>
+<li>(5) Fpmsyncd 处理 netlink 消息，并将此状态推入 <strong>APPL_DB</strong>。</li>
+<li>作为一个 APPL_DB 订阅者，它将接收先前推送到 <strong>APPL_DB</strong> 的信息的内容。</li>
+<li>(7) 处理完接收到的信息后，orchagentd 会调用 sairedis api 将路由信息注入到 <strong>ASIC_DB</strong> 中。同步一个 ASIC_DB 订阅者时，它将接收由 orchagentd 生成的新状态。</li>
+<li>(9) Syncd 将处理该信息，并调用 SAI api 将该状态注入到相应的 asic 驱动程序中。</li>
+<li>(10) 新路由最终推送到硬件。</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="img/index/image-3.png"
+        data-srcset="/sonic-system/img/index/image-3.png, img/index/image-3.png 1.5x, /sonic-system/img/index/image-3.png 2x"
+        data-sizes="auto"
+        alt="/sonic-system/img/index/image-3.png"
+        title="image.png" /></p>
+<h3 id="端口状态交互"><strong>端口状态交互</strong></h3>
+<p>本节描述在端口相关信息传输过程中发生的系统交互。考虑到 portsyncd 扮演的关键角色，以及它在其他 SONiC 子系统中施加的依赖关系，我们将从介绍它的初始化过程开始本节。
+这个练习有两个目的。首先，我们公开了系统中对生成或使用端口相关信息感兴趣的多个组件。其次，我们将通过一个图形示例向读者介绍 <strong>STATE_DB</strong> 在系统中是如何使用的，以及不同的应用程序如何依赖它的信息进行内部操作。</p>
+<ul>
+<li>(0) 在初始化过程中，portsyncd 与 redis-engine 中的主要数据库建立通信通道。Portsyncd 声明其意图充当 <strong>APPL_DB</strong> 和 <strong>STATE_DB</strong> 的发布者，以及 <strong>CONFIG_DB</strong> 的订阅者。同样，portsyncd 也订阅系统的 netlink 通道，负责携带端口 / 链路状态信息。</li>
+<li>(1) Portsyncd 通过解析与系统中使用的硬件配置文件 /sku 相关联的端口配置文件 (port_config.ini) 开始（有关更多详细信息，请参阅配置部分）。通道、接口名称、接口别名、速度等与端口相关的信息通过该通道传输到 <strong>APPL_DB</strong>。</li>
+<li>(2) Orchagent 会听到所有这些新状态，但会推迟对其采取行动，直到 portsyncd 通知它已完全解析 port_config.ini 信息。一旦发生这种情况，orchagent 将继续在硬件 / 内核中初始化相应的端口接口。Orchagent 调用 sairedis API 以通过通常的 <strong>ASIC_DB</strong> 接口将此请求传送到同步。</li>
+<li>(3) Syncd 通过 <strong>ASIC_DB</strong> 接收到这个新请求，并准备调用满足 Orchagent 请求所需的 SAI API。</li>
+<li>(4) Syncd 利用 SAI APIs + ASIC SDK 创建与正在初始化的物理端口相关联的内核主机接口。</li>
+<li>(5) 上一步将生成一个 netlink 消息，该消息将被 portsyncd 接收。当与先前从 port_config.ini 解析的所有端口相关联的消息到达 portsyncd 时（在步骤 1 中），portsyncd 将继续声明 “初始化” 过程已完成。</li>
+<li>(6) 作为上一步的一部分，portsyncd 将记录条目写入与成功初始化的每个端口对应的 STATE_DB。</li>
+<li>(7) 从这一刻起，之前订阅了 <strong>STATE_DB</strong> 内容的应用程序将收到通知，允许这些应用程序开始使用它们所依赖的端口。换句话说，如果在 <strong>STATE_DB</strong> 中找不到特定端口的有效条目，则任何应用程序都无法使用它。</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="img/index/image-4.png"
+        data-srcset="/sonic-system/img/index/image-4.png, img/index/image-4.png 1.5x, /sonic-system/img/index/image-4.png 2x"
+        data-sizes="auto"
+        alt="/sonic-system/img/index/image-4.png"
+        title="image.png" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">NOTE : As of today, these are the applications actively
+</span></span><span class="line"><span class="cl">listening to the changes in STATE_DB: teamsyncd, intfmgrd, vlanmgrd
+</span></span><span class="line"><span class="cl">and lldpmgr. We will cover all these components in subsequent
+</span></span><span class="line"><span class="cl">sections -- lldpmgr has been already tackled abov
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在，让我们遍历物理端口关闭时发生的一系列步骤：</p>
+<ul>
+<li>(0) 正如前面概述部分中提到的，syncd 在 <strong>ASIC_DB</strong> 的上下文中既作为发布者又作为订阅者执行。“订阅者” 模式显然是因为需要 syncd 从北向应用程序接收状态，就像迄今为止看到的所有模块交互的情况一样。需要 “发布者” 模式以允许 syncd 将硬件产生的事件到达通知更高级别的组件。</li>
+<li>(1) 在相应 ASIC 的光模块检测到载波丢失后，将向相关驱动程序发送通知，后者又将此信息传递给 syncd。</li>
+<li>(2) Syncd 调用适当的通知处理程序并将端口关闭事件发送到 <strong>ASIC_DB</strong>。</li>
+<li>(3) Orchagent 利用其通知线程（专用于此任务）从 <strong>ASIC_DB</strong> 收集新状态，并执行 “port-state-change” 处理程序以：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a.  Generate an update to APPL\_DB to alert applications relying on
+</span></span><span class="line"><span class="cl">    this state for their operation (e.g. CLI -- &#34;show interface
+</span></span><span class="line"><span class="cl">    status&#34;).
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">b.  Invoke sairedis APIs to alert syncd of the need to update the
+</span></span><span class="line"><span class="cl">    kernel state associated to the host-interface of the port being
+</span></span><span class="line"><span class="cl">    brought down. Again, orchagent delivers this request to syncd
+</span></span><span class="line"><span class="cl">    through the usual ASIC\_DB interface.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>(4) Syncd 通过 <strong>ASIC_DB</strong> 接收到这个新请求，并准备调用满足 orchagent 请求所需的 SAI API。</li>
+<li>(5) Syncd 使用 SAI APIs + ASIC SDK 来更新内核与受影响主机接口的最新操作状态 (DOWN)。</li>
+<li>(6) 在 portsyncd 处接收到与上一步相关联的 netlink 消息，由于所有 SONiC 组件现在完全知道端口关闭事件，因此该消息被静默丢弃。</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="img/index/image-5.png"
+        data-srcset="/sonic-system/img/index/image-5.png, img/index/image-5.png 1.5x, /sonic-system/img/index/image-5.png 2x"
+        data-sizes="auto"
+        alt="/sonic-system/img/index/image-5.png"
+        title="image.png" /></p>
+<h2 id="参考文献">参考文献</h2>
+<ul>
+<li>SONiC official wiki: <a href="https://github.com/Azure/SONiC/wiki" target="_blank" rel="noopener noreffer">https://github.com/Azure/SONiC/wiki</a> （SONiC 官方维基）</li>
+<li>SONiC architecture: <a href="https://github.com/Azure/SONiC/wiki/Architecture" target="_blank" rel="noopener noreffer">https://github.com/Azure/SONiC/wiki/Architecture</a> （SONiC 架构）</li>
+<li>Frytea blog:<a href="https://blog.frytea.com/archives/533/" target="_blank" rel="noopener noreffer">https://blog.frytea.com/archives/533/</a> (Frytea个人博客)</li>
+<li>知乎：<a href="https://www.zhihu.com/search?type=content&amp;q=sonic%20%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84" target="_blank" rel="noopener noreffer">https://www.zhihu.com/search?type=content&amp;q=sonic%20%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84</a> （SONiC架构分析）</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-06-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/sonic-system/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://allen191819.xyz/sonic-system/" data-title="SONiC 系统架构" data-hashtags="SONiC study,System"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://allen191819.xyz/sonic-system/" data-hashtag="SONiC study"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://allen191819.xyz/sonic-system/" data-title="SONiC 系统架构"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://allen191819.xyz/sonic-system/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://allen191819.xyz/sonic-system/" data-title="SONiC 系统架构"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="https://allen191819.xyz/sonic-system/" data-title="SONiC 系统架构"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/sonic-study/">SONiC study</a>,&nbsp;<a href="/tags/system/">System</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/haskell-4/" class="prev" rel="prev" title="Haskell 学习笔记五"><i class="fas fa-angle-left fa-fw"></i>Haskell 学习笔记五</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.99.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://allen191819.xyz/" target="_blank">Allen191819</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">陕ICP备2022000578号-1</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"dh3RTojhq3nlJOKjVBj7IjDE-gzGzoHsz","appKey":"PAT7jDcg2ByGXNmiigwBrIoH","avatar":"identicon","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":true,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"data":{"id-1":"Allen's Blog","id-2":"Allen's Blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
